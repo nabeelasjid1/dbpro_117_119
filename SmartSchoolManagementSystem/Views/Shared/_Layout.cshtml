@@ -1,44 +1,193 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html class="no-js" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title - Student Management System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="~/Content/img/icon/section.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    <link rel="stylesheet" href="~/Content/css/meanmenu.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/et-line-icon.css">
+    <link rel="stylesheet" href="~/Content/css/reset.css">
+    <link rel="stylesheet" href="~/Content/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+    <script src="~/Content/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="~/Content/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.meanmenu.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.js"></script>
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.mb.YTPlayer.js"></script>
+    <script src="~/Content/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Content/js/plugins.js"></script>
+    <script src="~/Content/js/main.js"></script>
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Header Area Start -->
+    <header class="top">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 col-xs-12">
+                        <div class="header-top-left">
+                            <p>HAVE ANY QUESTION ?  +92 300 0000 000</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-4 col-xs-12">
+                        <div class="header-top-right text-right">
+                            <ul>
+                                @Html.Partial("_LoginPartial")
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        <div class="header-area header-sticky fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="logo">
+                            <a href="@Url.Action("Index","Home")"><img src="~/Content/img/logo/logo.png" alt="eduhome" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="content-wrapper one">
+                            <!-- Main Menu Start -->
+                            <div class="main-menu one text-right">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="@Url.Action("Index","Home")">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","Course")">courses</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","Event")">events</a>
+                                        </li>
+                                        <li class="hidden-sm">
+                                            <a href="@Url.Action("Index","Faculty")">Our Faculty</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> Dashboard</a>
+                                            <ul>
+                                                <li><a href="@Url.Action("Index", "Department")">Admin</a></li>
+                                                <li><a href="@Url.Action("Index", "Student")">Teacher</a></li>
+                                                <li><a href="@Url.Action("Index", "StudentPanel")">Student</a></li>
+                                                <li><a href="@Url.Action("Index", "ParentPanel")">Parent</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="mobile-menu hidden-lg hidden-md one"></div>
+                            <!-- Main Menu End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Footer Start -->
+    <footer class="footer-area">
+        <div class="main-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="single-widget pr-60">
+                            <div class="footer-logo pb-25">
+                                <a href="@Url.Action("Index","Home")"><img src="~/Content/img/logo/footer-logo.png" alt="eduhome"></a>
+                            </div>
+                            <p>I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and give you a coete account of the system. </p>
+                            <div class="footer-social">
+                                <ul>
+                                    <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-pinterest"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-vimeo"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>information</h3>
+                            <ul>
+                                <li><a href="@Url.Action("Index","Course")">Courses</a></li>
+                                <li><a href="@Url.Action("Index","Faculty")">Faculty Members</a></li>
+                                <li><a href="@Url.Action("Index","CEvent")">Events of Year</a></li>
+                                <li><a href="@Url.Action("Index","CEvent")">Upcomming Events</a></li>
+                                <li><a href="@Url.Action("Index","Faculty")">Send a Quote</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>useful links</h3>
+                            <ul>
+                                <li><a href="@Url.Action("Index","Course")">our courses</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="@Url.Action("Index","Faculty")">teachers &amp; faculty</a></li>
+                                <li><a href="#">terms &amp; conditions</a></li>
+                                <li><a href="@Url.Action("Index","CEvent")">our events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>get in touch</h3>
+                            <p>Room No 76, Muhammad Bin Qasim Hall<br>UET, GT Road 57000 Lahore</p>
+                            <p>+92 300 0000 000<br>+92 300 1111 111</p>
+                            <p>info@ranaaccadmy.pk<br>https://www.ranaaccadmy.pk</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>Copyright © <a href="#" target="_blank">Rana Accadmy</a> 2018. All Right Reserved By Hastech.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <script src="~/Content/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.meanmenu.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.js"></script>
+    <script src="~/Content/js/ajax-mail.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.mb.YTPlayer.js"></script>
+    <script src="~/Content/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Content/js/plugins.js"></script>
+    <script src="~/Content/js/main.js"></script>
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
