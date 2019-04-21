@@ -215,6 +215,7 @@
     <Compile Include="ClassAttendence.cs">
       <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
     <Compile Include="complaint.cs">
       <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
     </Compile>
@@ -416,6 +417,10 @@
     <Content Include="Views\Admin\AddHostel.cshtml" />
     <Content Include="Views\Admin\EditHostel.cshtml" />
     <Content Include="Views\Admin\DeleteHostel.cshtml" />
+    <Content Include="Views\Admin\AddParent.cshtml" />
+    <Content Include="Views\Admin\ParentsList.cshtml" />
+    <Content Include="Views\Admin\EditParent.cshtml" />
+    <Content Include="Views\Admin\DeleteParent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
