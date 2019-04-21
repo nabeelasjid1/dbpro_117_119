@@ -225,6 +225,9 @@
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParentController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Course.cs">
       <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
     </Compile>
@@ -260,10 +263,20 @@
     <Compile Include="Migrations\201904161934133_Added-Roles.Designer.cs">
       <DependentUpon>201904161934133_Added-Roles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904201035464_UserRollAdded.cs" />
+    <Compile Include="Migrations\201904201035464_UserRollAdded.Designer.cs">
+      <DependentUpon>201904201035464_UserRollAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201140405_AddedRole.cs" />
+    <Compile Include="Migrations\201904201140405_AddedRole.Designer.cs">
+      <DependentUpon>201904201140405_AddedRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DepartmentViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NoticeViewModel.cs" />
     <Compile Include="News.cs">
       <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
     </Compile>
@@ -389,6 +402,20 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AddDepartment.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Parent\Index.cshtml" />
+    <Content Include="Views\Admin\DepartmentList.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\AddNotice.cshtml" />
+    <Content Include="Views\Admin\NoticesList.cshtml" />
+    <Content Include="Views\Admin\EditNotice.cshtml" />
+    <Content Include="Views\Admin\DeleteNotice.cshtml" />
+    <Content Include="Views\Admin\HostelsList.cshtml" />
+    <Content Include="Views\Admin\AddHostel.cshtml" />
+    <Content Include="Views\Admin\EditHostel.cshtml" />
+    <Content Include="Views\Admin\DeleteHostel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +434,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904161934133_Added-Roles.resx">
       <DependentUpon>201904161934133_Added-Roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201035464_UserRollAdded.resx">
+      <DependentUpon>201904201035464_UserRollAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201140405_AddedRole.resx">
+      <DependentUpon>201904201140405_AddedRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
