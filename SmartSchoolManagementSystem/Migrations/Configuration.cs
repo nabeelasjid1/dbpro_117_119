@@ -5,14 +5,14 @@ namespace SmartSchoolManagementSystem.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SmartSchoolManagementSystem.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SmartSchoolManagementSystem.DB40Entities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(SmartSchoolManagementSystem.Models.ApplicationDbContext context)
+        protected override void Seed(SmartSchoolManagementSystem.DB40Entities context)
         {
             //  This method will be called after migrating to the latest version.
 

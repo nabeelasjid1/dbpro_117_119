@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D7C2F01C-AD68-4CFF-9CDD-B569E6BD9FF9}</ProjectGuid>
+    <ProjectGuid>{A7C261C1-9F75-4A18-973F-20646F12BF2A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -198,26 +198,27 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Chalan.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassAttendence.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\StudentCollectionViewModel.cs" />
     <Compile Include="complaint.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -230,47 +231,58 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Course.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB40Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB40Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB40Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB40Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB40Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Event.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hostel.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Instructor.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="InstructorStudentRelation.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Lookup.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904161816038_Initial.cs" />
-    <Compile Include="Migrations\201904161816038_Initial.Designer.cs">
-      <DependentUpon>201904161816038_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201904221936489_InitialCreate.cs" />
+    <Compile Include="Migrations\201904221936489_InitialCreate.Designer.cs">
+      <DependentUpon>201904221936489_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904161934133_Added-Roles.cs" />
-    <Compile Include="Migrations\201904161934133_Added-Roles.Designer.cs">
-      <DependentUpon>201904161934133_Added-Roles.cs</DependentUpon>
+    <Compile Include="Migrations\201904221942576_rollsadded.cs" />
+    <Compile Include="Migrations\201904221942576_rollsadded.Designer.cs">
+      <DependentUpon>201904221942576_rollsadded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904201035464_UserRollAdded.cs" />
-    <Compile Include="Migrations\201904201035464_UserRollAdded.Designer.cs">
-      <DependentUpon>201904201035464_UserRollAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904201140405_AddedRole.cs" />
-    <Compile Include="Migrations\201904201140405_AddedRole.Designer.cs">
-      <DependentUpon>201904201140405_AddedRole.cs</DependentUpon>
+    <Compile Include="Migrations\201904221955091_UserRollAdded.cs" />
+    <Compile Include="Migrations\201904221955091_UserRollAdded.Designer.cs">
+      <DependentUpon>201904221955091_UserRollAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -279,47 +291,39 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NoticeViewModel.cs" />
     <Compile Include="News.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Notice.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Parent.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmartSchoolManagementSystemModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SmartSchoolManagementSystemModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SmartSchoolManagementSystemModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SmartSchoolManagementSystemModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SmartSchoolManagementSystemModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Student.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentAttendence.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentResult.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>SmartSchoolManagementSystemModel.tt</DependentUpon>
+      <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DB40Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB40Model.edmx</DependentUpon>
+      <LastGenOutput>DB40Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB40Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB40Model.edmx</DependentUpon>
+      <LastGenOutput>DB40Model.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -330,6 +334,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="DB40Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB40Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DB40Model.edmx.diagram">
+      <DependentUpon>DB40Model.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -343,17 +354,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="SmartSchoolManagementSystemModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmartSchoolManagementSystemModel.edmx</DependentUpon>
-      <LastGenOutput>SmartSchoolManagementSystemModel.Context.cs</LastGenOutput>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="SmartSchoolManagementSystemModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmartSchoolManagementSystemModel.edmx</DependentUpon>
-      <LastGenOutput>SmartSchoolManagementSystemModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -387,40 +390,37 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <EntityDeploy Include="SmartSchoolManagementSystemModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SmartSchoolManagementSystemModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="SmartSchoolManagementSystemModel.edmx.diagram">
-      <DependentUpon>SmartSchoolManagementSystemModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Views\Faculty\Index.cshtml" />
-    <Content Include="Views\Faculty\TeacherDetails.cshtml" />
-    <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Event\EventDetails.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\CourseDetails.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\AddDepartment.cshtml" />
-    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\EventDetails.cshtml" />
+    <Content Include="Views\Faculty\Index.cshtml" />
+    <Content Include="Views\Faculty\TeacherDetails.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Parent\Index.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\DepartmentList.cshtml" />
+    <Content Include="Views\Admin\AddDepartment.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
-    <Content Include="Views\Admin\AddNotice.cshtml" />
     <Content Include="Views\Admin\NoticesList.cshtml" />
+    <Content Include="Views\Admin\AddNotice.cshtml" />
     <Content Include="Views\Admin\EditNotice.cshtml" />
     <Content Include="Views\Admin\DeleteNotice.cshtml" />
     <Content Include="Views\Admin\HostelsList.cshtml" />
     <Content Include="Views\Admin\AddHostel.cshtml" />
     <Content Include="Views\Admin\EditHostel.cshtml" />
     <Content Include="Views\Admin\DeleteHostel.cshtml" />
-    <Content Include="Views\Admin\AddParent.cshtml" />
-    <Content Include="Views\Admin\ParentsList.cshtml" />
-    <Content Include="Views\Admin\EditParent.cshtml" />
     <Content Include="Views\Admin\DeleteParent.cshtml" />
+    <Content Include="Views\Admin\EditParent.cshtml" />
+    <Content Include="Views\Admin\ParentsList.cshtml" />
+    <Content Include="Views\Admin\AddParent.cshtml" />
+    <Content Include="Views\Admin\AddStudent.cshtml" />
+    <Content Include="Views\Admin\StudentsList.cshtml" />
+    <Content Include="Views\Admin\DeleteStudent.cshtml" />
+    <Content Include="Views\Admin\EditStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -434,21 +434,18 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904161816038_Initial.resx">
-      <DependentUpon>201904161816038_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904161934133_Added-Roles.resx">
-      <DependentUpon>201904161934133_Added-Roles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904201035464_UserRollAdded.resx">
-      <DependentUpon>201904201035464_UserRollAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904201140405_AddedRole.resx">
-      <DependentUpon>201904201140405_AddedRole.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201904221936489_InitialCreate.resx">
+      <DependentUpon>201904221936489_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904221942576_rollsadded.resx">
+      <DependentUpon>201904221942576_rollsadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904221955091_UserRollAdded.resx">
+      <DependentUpon>201904221955091_UserRollAdded.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -466,9 +463,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>57282</DevelopmentServerPort>
+          <DevelopmentServerPort>49409</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57282/</IISUrl>
+          <IISUrl>http://localhost:49409/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

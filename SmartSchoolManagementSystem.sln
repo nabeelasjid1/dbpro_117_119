@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSchoolManagementSystem", "SmartSchoolManagementSystem\SmartSchoolManagementSystem.csproj", "{D7C2F01C-AD68-4CFF-9CDD-B569E6BD9FF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSchoolManagementSystem", "SmartSchoolManagementSystem\SmartSchoolManagementSystem.csproj", "{A7C261C1-9F75-4A18-973F-20646F12BF2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D7C2F01C-AD68-4CFF-9CDD-B569E6BD9FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7C2F01C-AD68-4CFF-9CDD-B569E6BD9FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7C2F01C-AD68-4CFF-9CDD-B569E6BD9FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7C2F01C-AD68-4CFF-9CDD-B569E6BD9FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7C261C1-9F75-4A18-973F-20646F12BF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C261C1-9F75-4A18-973F-20646F12BF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C261C1-9F75-4A18-973F-20646F12BF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C261C1-9F75-4A18-973F-20646F12BF2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
