@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\StudentCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\TeacherCollectionViewModel.cs" />
     <Compile Include="complaint.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
@@ -429,6 +430,10 @@
     <Content Include="Views\Admin\EventsList.cshtml" />
     <Content Include="Views\Admin\EditEvent.cshtml" />
     <Content Include="Views\Admin\DeleteEvent.cshtml" />
+    <Content Include="Views\Admin\AddTeacher.cshtml" />
+    <Content Include="Views\Admin\TeachersList.cshtml" />
+    <Content Include="Views\Admin\EditTeacher.cshtml" />
+    <Content Include="Views\Admin\DeleteTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
