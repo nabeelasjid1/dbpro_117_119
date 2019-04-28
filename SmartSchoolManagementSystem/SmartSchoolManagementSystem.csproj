@@ -217,6 +217,7 @@
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\RelationsCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\StudentCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\TeacherCollectionViewModel.cs" />
     <Compile Include="complaint.cs">
@@ -233,6 +234,9 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Course.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DB40Model.Context.cs">
@@ -253,6 +257,15 @@
     <Compile Include="Department.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentCourseRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentInstructorRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentStudentRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Event.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
@@ -263,6 +276,9 @@
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Instructor.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstructorCourseRelation.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="InstructorStudentRelation.cs">
@@ -298,6 +314,9 @@
     <Compile Include="Parent.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ParentStudentRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Student.cs">
@@ -306,7 +325,25 @@
     <Compile Include="StudentAttendence.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="StudentChalanRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentcomplaintRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentEventRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentHostelRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentRegSubjectRelation.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="StudentResult.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -436,6 +473,7 @@
     <Content Include="Views\Admin\EditCourse.cshtml" />
     <Content Include="Views\Admin\DeleteCourse.cshtml" />
     <Content Include="Views\Admin\CoursesList.cshtml" />
+    <Content Include="Views\Admin\MakeParentStudentRelation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
