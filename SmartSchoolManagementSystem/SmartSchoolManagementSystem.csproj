@@ -219,6 +219,7 @@
     <Compile Include="CollectionViewModel\CollectionOfAllViewModel.cs" />
     <Compile Include="CollectionViewModel\CourseCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\ParentStudentRelationViewModel.cs" />
     <Compile Include="CollectionViewModel\RelationsCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\StudentCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\StudentManageAccountViewModel.cs" />
@@ -494,6 +495,19 @@
     <Content Include="Views\Student\ApplyForHostel.cshtml" />
     <Content Include="Views\Student\AppliedHostel.cshtml" />
     <Content Include="Views\Student\UnApplyForHostel.cshtml" />
+    <Content Include="Views\Shared\_ParentLayout.cshtml" />
+    <Content Include="Views\Parent\AddComplaint.cshtml" />
+    <Content Include="Views\Parent\CompliantsList.cshtml" />
+    <Content Include="Views\Parent\DeleteComplaint.cshtml" />
+    <Content Include="Views\Parent\CoursesList.cshtml" />
+    <Content Include="Views\Parent\UnrollCourse.cshtml" />
+    <Content Include="Views\Parent\StudentsList.cshtml" />
+    <Content Include="Views\Parent\StudentsList1.cshtml" />
+    <Content Include="Views\Parent\EventsList.cshtml" />
+    <Content Include="Views\Parent\LeaveEvent.cshtml" />
+    <Content Include="Views\Parent\StudentsList2.cshtml" />
+    <Content Include="Views\Parent\HostelsList.cshtml" />
+    <Content Include="Views\Parent\UnApplyForHostel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
