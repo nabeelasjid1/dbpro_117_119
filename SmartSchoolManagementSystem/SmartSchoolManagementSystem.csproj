@@ -216,9 +216,11 @@
     <Compile Include="ClassAttendence.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CollectionViewModel\ChallanCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\CollectionOfAllViewModel.cs" />
     <Compile Include="CollectionViewModel\CourseCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\ParentManageAccountViewModel.cs" />
     <Compile Include="CollectionViewModel\ParentStudentRelationViewModel.cs" />
     <Compile Include="CollectionViewModel\RelationsCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\StudentCollectionViewModel.cs" />
@@ -508,6 +510,19 @@
     <Content Include="Views\Parent\StudentsList2.cshtml" />
     <Content Include="Views\Parent\HostelsList.cshtml" />
     <Content Include="Views\Parent\UnApplyForHostel.cshtml" />
+    <Content Include="Views\Parent\ApplyForHostel.cshtml" />
+    <Content Include="Views\Parent\ApplyHostel.cshtml" />
+    <Content Include="Views\Parent\StudentsList3.cshtml" />
+    <Content Include="Views\Parent\AvailableHostelsList.cshtml" />
+    <Content Include="Views\Parent\ManageAccount.cshtml" />
+    <Content Include="Views\Admin\ComplaintsList.cshtml" />
+    <Content Include="Views\Admin\EditComplaint.cshtml" />
+    <Content Include="Views\Admin\AddChallan.cshtml" />
+    <Content Include="Views\Admin\ChallansList.cshtml" />
+    <Content Include="Views\Admin\EditChallan.cshtml" />
+    <Content Include="Views\Student\ChallansList.cshtml" />
+    <Content Include="Views\Parent\StudentsList4.cshtml" />
+    <Content Include="Views\Parent\ChallansList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
