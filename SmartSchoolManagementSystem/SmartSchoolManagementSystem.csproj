@@ -216,10 +216,13 @@
     <Compile Include="ClassAttendence.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CollectionViewModel\CollectionOfAllViewModel.cs" />
     <Compile Include="CollectionViewModel\CourseCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\RelationsCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\StudentCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\StudentManageAccountViewModel.cs" />
+    <Compile Include="CollectionViewModel\StudentRegisteredCoursesViewModel.cs" />
     <Compile Include="CollectionViewModel\TeacherCollectionViewModel.cs" />
     <Compile Include="complaint.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
@@ -475,6 +478,22 @@
     <Content Include="Views\Admin\DeleteCourse.cshtml" />
     <Content Include="Views\Admin\CoursesList.cshtml" />
     <Content Include="Views\Admin\MakeParentStudentRelation.cshtml" />
+    <Content Include="Views\Course\CourseApply.cshtml" />
+    <Content Include="Views\Event\EventApply.cshtml" />
+    <Content Include="Views\Shared\_StudentLayout.cshtml" />
+    <Content Include="Views\Student\CoursesList.cshtml" />
+    <Content Include="Views\Student\UnrollCourse.cshtml" />
+    <Content Include="Views\Student\EventsList.cshtml" />
+    <Content Include="Views\Student\LeaveEvent.cshtml" />
+    <Content Include="Views\Student\ManageAccount.cshtml" />
+    <Content Include="Views\Student\AddCompliant.cshtml" />
+    <Content Include="Views\Student\AddComplaint.cshtml" />
+    <Content Include="Views\Student\CompliantsList.cshtml" />
+    <Content Include="Views\Student\DeleteComplaint.cshtml" />
+    <Content Include="Views\Student\HostelsList.cshtml" />
+    <Content Include="Views\Student\ApplyForHostel.cshtml" />
+    <Content Include="Views\Student\AppliedHostel.cshtml" />
+    <Content Include="Views\Student\UnApplyForHostel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
