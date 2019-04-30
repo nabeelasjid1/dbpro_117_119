@@ -1,0 +1,64 @@
+﻿@model SmartSchoolManagementSystem.CollectionViewModel.CourseCollectionViewModel
+@{
+    ViewBag.Title = "CourseDetails";
+    var defaultImageURL = "~/Content/images//placeholder-image.png";
+}
+<!-- Banner Area Start -->
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>courses details</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Blog Start -->
+<div class="courses-details-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="courses-details">
+                    <div class="courses-details-img">
+                        <img src="@Url.Content(Model.Course.ImageUrl)" alt="@Url.Content(defaultImageURL)" style="margin-top:35px">
+                    </div>
+                    <div class="course-details-content">
+                        <h2>@Model.Course.Title</h2>
+                        <p>@Model.Course.Description</p>
+                        <div class="course-details-left">
+                            <div class="single-course-left">
+                                <h3>about course</h3>
+                                <p>@Model.Course.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="blog-sidebar right">
+                    <div class="course-details-content">
+                        <div class="course-details-right">
+                            <h3>COURSE FEATURES</h3>
+                            <ul>
+                                <li>duration <span>6 Month</span></li>
+                                <li>class duration <span>@Model.Course.CreditHrs hours</span></li>
+                                <li>Instructor <span>@Model.Relation.Instructor.FirstName @Model.Relation.Instructor.LastName</span></li>
+                                <li>assesments <span>self</span></li>
+                            </ul>
+                            <a class="default-btn" href="@Url.Action("CourseApply", "Course",new {id = Model.Course.CourseId})">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->

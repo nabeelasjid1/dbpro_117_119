@@ -1,0 +1,144 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "_AdminLayout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parent | DashBoard</title>
+    <link href="~/Content/secondLayout/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/secondLayout/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/secondLayout/datatables/css/datatables.bootstrap.css">
+    <link rel="stylesheet" href="~/Content/secondLayout/Chosen/chosen.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link href="~/Content/secondLayout/css/styles.css" rel="stylesheet">
+    <script src="~/Content/secondLayout/js/bootstrap.min.js"></script>
+    <script src="~/Content/secondLayout/js/chart.min.js"></script>
+    <script src="~/Content/secondLayout/js/chart-data.js"></script>
+    <script src="~/Content/secondLayout/js/easypiechart.js"></script>
+    <script src="~/Content/secondLayout/js/easypiechart-data.js"></script>
+    <script src="~/Content/secondLayout/js/custom.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span>DashBoard</span>Parent</a>
+                <ul class="nav navbar-top-links navbar-right"></ul>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <div class="profile-sidebar">
+            <div class="profile-userpic">
+                <img src="~/Content/secondLayout/img/Administrator.png" class="img-responsive" alt="">
+            </div>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">@User.Identity.Name</div>
+                <div class="profile-usertitle-status"><span class="indicator label-success"></span>Parent</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="divider"></div>
+        <ul class="nav menu">
+            <li class="active"><a href="@Url.Action("Index", "Parent")"><em class="fa fa-dashboard">&nbsp;</em> DashBoard</a></li>
+            <li>
+                <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Manage Account</button>
+                <div style="width: 100% !important" class="children content">
+                    @Html.ActionLink("Manage Account", "ManageAccount", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                </div>
+            </li>
+            <li>
+                <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Compliant</button>
+                <div style="width: 100% !important" class="children content">
+                    @Html.ActionLink("Make Compliant", "AddComplaint", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                    @Html.ActionLink("List of Compliants", "CompliantsList", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                </div>
+            </li>
+            <li>
+                <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Courses</button>
+                <div style="width: 100% !important" class="children content">
+                    @*@Html.ActionLink("Registered Courses", "CoursesList", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })*@
+                    @Html.ActionLink("Students List", "StudentsList", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                </div>
+            </li>
+            <li>
+                <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Event</button>
+                <div style="width: 100% !important" class="children content">
+                    @Html.ActionLink("Students List", "StudentsList1", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                </div>
+            </li>
+
+            <li>
+                <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Hostel</button>
+                <div style="width: 100% !important" class="children content">
+                    @Html.ActionLink("Apply For Hostel", "StudentsList3", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                    @Html.ActionLink("Students List", "StudentsList2", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                </div>
+            </li>
+            <li>
+                <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Challan</button>
+                <div style="width: 100% !important" class="children content">
+                    @Html.ActionLink("Students List", "StudentsList4", "Parent", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                </div>
+            </li>
+
+            @Html.Partial("_LoginPartial")
+        </ul>
+    </div><!--/.sidebar-->
+    <div class="col-sm-7 col-sm-offset-3 col-lg-10 col-lg-offset-2 ">
+        @RenderBody()
+    </div>	<!--/.main-->
+    @Scripts.Render("~/bundles/lib")
+    <script src="~/Content/secondLayout/js/bootstrap.min.js"></script>
+    <script src="~/Content/secondLayout/js/chart.min.js"></script>
+    <script src="~/Content/secondLayout/js/chart-data.js"></script>
+    <script src="~/Content/secondLayout/js/easypiechart.js"></script>
+    <script src="~/Content/secondLayout/js/easypiechart-data.js"></script>
+    <script src="~/Content/secondLayout/js/custom.js"></script>
+    <!--Script for collapse-->
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click",
+                function () {
+                    this.classList.toggle("actives");
+                    var content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+        }
+    </script>
+    <script>
+        $('.count').each(function () {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 1500,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

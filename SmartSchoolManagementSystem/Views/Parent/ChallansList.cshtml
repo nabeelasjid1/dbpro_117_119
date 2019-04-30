@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Chalan>
+
+@{
+    ViewBag.Title = "CoursesList";
+    Layout = "~/Views/Shared/_ParentLayout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Courses</li>
+        <li class="active">List of Courses</li>
+    </ol>
+</div>
+<h2>List Of Registered Courses</h2>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Challan ID
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Print Challan
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ChalanId
+                </td>
+                <td>
+                    @item.Fee
+                </td>
+                @if (item.IsPaid == false)
+                {
+                    <td>Not Paid</td>
+                }
+                else
+                {
+                    <td>Paid</td>
+                }
+                <td>
+                    <a href=# class="fa fa-print" style="font-size: 19px;"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

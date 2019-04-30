@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.complaint>
+
+@{
+    ViewBag.Title = "CompliantsList";
+    Layout = "~/Views/Shared/_ParentLayout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Complaints</li>
+        <li class="active">List of Complaints</li>
+    </ol>
+</div>
+<h2>List of Complaints</h2>
+
+<p>
+    @Html.ActionLink("Add Complaint", "AddComplaint", null, new { @class = "btn btn-primary" })
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Complaint Date
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Status
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Date.ToString("MMMM dd, yyyy")
+                </td>
+                <td>
+                    @item.Detail
+                </td>
+                @{
+                    if (item.IsViewed == false)
+                    {
+                        <td>
+                            Pending
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Viewed
+                        </td>
+                    }
+                }
+                <td>
+                    <a href="@Url.Action("DeleteComplaint", new {id = item.complaintId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+                    }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

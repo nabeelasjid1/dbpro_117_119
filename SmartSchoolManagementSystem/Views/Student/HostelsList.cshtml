@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Hostel>
+
+@{
+    ViewBag.Title = "HostelsList";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Hostel</li>
+        <li class="active">List of Hostels</li>
+    </ol>
+</div>
+<h2>List of Hostels</h2>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Hostel Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Capacity
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.Capacity
+                </td>
+                <td>
+                    <a href="@Url.Action("ApplyForHostel", new {id = item.HostelId})" class="fa fa-paper-plane" style="font-size: 19px">Apply</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

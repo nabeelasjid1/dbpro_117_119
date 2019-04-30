@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Parent>
+
+@{
+    ViewBag.Title = "ParentsList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<p>
+    @Html.ActionLink("Create New", "AddParent")
+</p>
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Parents</li>
+        <li class="active">List of Parents</li>
+    </ol>
+</div>
+<h2>List Of Patients</h2>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                Contact
+            </th>
+            <th>
+                Password
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.UserName
+                </td>
+                <td>
+                    @item.Contact
+                </td>
+                <th>
+                    @item.Password
+                </th>
+                <td>
+                    <a href="@Url.Action("EditParent", new {id = item.ParentId})" class="fa fa-pencil-square-o" style="font-size: 19px"></a> |
+                    <a href="@Url.Action("DeleteParent", new {id = item.UserId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

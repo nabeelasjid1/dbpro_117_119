@@ -1,0 +1,67 @@
+﻿@model SmartSchoolManagementSystem.CollectionViewModel.ParentAdminStudentRelationViewModel
+
+@{
+    ViewBag.Title = "CoursesList";
+    Layout = "~/Views/Shared/_ParentLayout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Events</li>
+        <li class="active">List of Events</li>
+    </ol>
+</div>
+<h2>List Of Joined Events</h2>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Venue
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Image
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Events)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Venue
+                </td>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    <img class="img img-responsive cimg" src="@Url.Content(item.ImageUrl)" style="height:30px;width:30px " />
+                </td>
+                <td>
+                    <a href="@Url.Action("LeaveEvent", new {id = item.EventId, idd = Model.Student.StudentId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

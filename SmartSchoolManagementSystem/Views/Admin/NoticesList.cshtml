@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Notice>
+
+@{
+    ViewBag.Title = "NoticesList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Notice</li>
+        <li class="active">List of Notices</li>
+    </ol>
+</div>
+<h2>List of Notices</h2>
+
+<p>
+    @Html.ActionLink("Add Notice", "AddNotice", null, new { @class = "btn btn-primary" })
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Notice Date
+            </th>
+            <th>
+                Description
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Date.ToString("MMMM dd, yyyy")
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    <a href="@Url.Action("EditNotice", new {id = item.NoticeId})" class="fa fa-pencil-square-o" style="font-size: 19px"></a> |
+                    <a href="@Url.Action("DeleteNotice", new {id = item.NoticeId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Chalan>
+
+@{
+    ViewBag.Title = "ChallansList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Challan</li>
+        <li class="active">List of Challans</li>
+    </ol>
+</div>
+<h2>List of Challan</h2>
+
+<p>
+    @Html.ActionLink("Add Challan", "AddChallan", null, new { @class = "btn btn-primary" })
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Challan ID
+            </th>
+            <th>
+                Date Of Generation
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Fee
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ChalanId
+                </td>
+                <td>
+                    @item.ChalanDate
+                </td>
+                @if (item.IsPaid == false)
+                {
+                    <td>
+                        Not Paid
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Paid
+                    </td>
+                }
+                <td>
+                    @item.Fee
+                </td>
+                <td>
+                    <a href="@Url.Action("EditChallan", new {id = item.ChalanId})" class="fa fa-pencil-square-o" style="font-size: 19px"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

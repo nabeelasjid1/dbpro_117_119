@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Student>
+
+@{
+    ViewBag.Title = "StudentsList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>StudentsList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddStudent")
+</p>
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Students</li>
+        <li class="active">List of Students</li>
+    </ol>
+</div>
+<h2>List Of Students</h2>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Registration Number
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.UserName
+                </td>
+                <th>
+                    @item.Password
+                </th>
+                <td>
+                    @item.RegistrationNumber
+                </td>
+                <td>
+                    <a href="@Url.Action("EditStudent", new {id = item.StudentId})" class="fa fa-pencil-square-o" style="font-size: 19px"></a> |
+                    <a href="@Url.Action("DeleteStudent", new {id = item.UserId, idd = item.StudentId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

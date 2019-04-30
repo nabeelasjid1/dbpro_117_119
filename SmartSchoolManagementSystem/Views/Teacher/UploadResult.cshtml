@@ -1,0 +1,79 @@
+﻿@model SmartSchoolManagementSystem.CollectionViewModel.UploadResultViewModel
+@{
+    ViewBag.Title = "MarkAttendance";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<h2>MarkAttendance</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <table id="table_id" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Registration Number
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Allocate
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Students)
+                {
+                    <tr>
+                        <td>
+                            @item.FirstName @item.LastName
+                        <td>
+                            @item.RegistrationNumber
+                        </td>
+                        @{
+                            var GradeList = new List<StudentResult>
+                    {
+                        new StudentResult {Grade = "A"},
+                        new StudentResult {Grade = "A-"},
+                        new StudentResult {Grade = "B+"},
+                        new StudentResult {Grade = "B"},
+                        new StudentResult {Grade = "B-"},
+                        new StudentResult {Grade = "C+"},
+                        new StudentResult {Grade = "C"},
+                        new StudentResult {Grade = "C-"},
+                        new StudentResult {Grade = "D+"},
+                        new StudentResult {Grade = "D"},
+                        new StudentResult {Grade = "F"},
+                        new StudentResult {Grade = "W"},
+                        new StudentResult {Grade = "I"},
+                    };
+                        }
+                        <td>
+                            @Html.DropDownListFor(model => model.StudentResult.Grade, new SelectList(GradeList, "Grade", "Grade"), new { @class = "form-control" })
+                        </td>
+                        <td>
+                            <a href="@Url.Action("UploadStudentResult", new {id = item.StudentId, idd = Model.Course.CourseId})" class="fa fa-paper-plane" style="font-size: 19px;"></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-3 pull-right">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+                            }
+
+<div>
+    @Html.ActionLink("Back", "Index")
+</div>

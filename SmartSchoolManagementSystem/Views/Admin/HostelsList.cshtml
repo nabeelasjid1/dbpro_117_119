@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Hostel>
+
+@{
+    ViewBag.Title = "HostelsList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Hostel</li>
+        <li class="active">List of Hostels</li>
+    </ol>
+</div>
+<h2>List of Hostels</h2>
+
+<p>
+    @Html.ActionLink("Add Hostel", "AddHostel", null, new { @class = "btn btn-primary" })
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Hostel Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Capacity
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.Capacity
+                </td>
+                <td>
+                    <a href="@Url.Action("EditHostel", new {id = item.HostelId})" class="fa fa-pencil-square-o" style="font-size: 19px"></a> |
+                    <a href="@Url.Action("DeleteHostel", new {id = item.HostelId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

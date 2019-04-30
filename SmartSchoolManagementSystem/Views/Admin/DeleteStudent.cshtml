@@ -1,0 +1,51 @@
+﻿@model SmartSchoolManagementSystem.CollectionViewModel.StudentCollectionViewModel
+
+@{
+    ViewBag.Title = "DeleteStudent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>DeleteStudent</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+@Html.HiddenFor(model => model.Student.UserId)
+@Html.HiddenFor(model => model.Student1.StudentId)
+<div>
+    <h4>StudentCollectionViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            First Name
+        </dt>
+
+        <dd>
+            @Model.Student.FirstName
+        </dd>
+
+        <dt>
+            Last Name
+        </dt>
+
+        <dd>
+            @Model.Student.LastName
+        </dd>
+
+        <dt>
+            Registration Number
+        </dt>
+
+        <dd>
+            @Model.Student.RegistrationNumber
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "StudentsList")
+        </div>
+    }
+</div>

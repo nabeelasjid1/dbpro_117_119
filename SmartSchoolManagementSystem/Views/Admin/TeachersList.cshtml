@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Instructor>
+
+@{
+    ViewBag.Title = "TeachersList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Teachers List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddTeacher")
+</p>
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Teachers</li>
+        <li class="active">List of Teachers</li>
+    </ol>
+</div>
+<h2>List Of Teachers</h2>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Image
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.FirstName
+                <td>
+                    @item.UserName
+                </td>
+                <th>
+                    @item.Password
+                </th>
+                <td>
+                    <img class="img img-responsive cimg" src="@Url.Content(item.ImageUrl)" style="height:30px;width:30px " />
+                </td>
+                <td>
+                    <a href="@Url.Action("EditTeacher", new {id = item.InstructorId})" class="fa fa-pencil-square-o" style="font-size: 19px"></a> |
+                    <a href="@Url.Action("DeleteTeacher", new {id = item.UserId, idd = item.InstructorId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

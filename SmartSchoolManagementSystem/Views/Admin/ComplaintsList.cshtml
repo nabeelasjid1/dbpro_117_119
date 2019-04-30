@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.complaint>
+
+@{
+    ViewBag.Title = "CompliantsList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Complaints</li>
+        <li class="active">List of Complaints</li>
+    </ol>
+</div>
+<h2>List of Complaints</h2>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Complaint Date
+            </th>
+            <th>
+                Status
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Date.ToString("MMMM dd, yyyy")
+                </td>
+                @{
+                    if (item.IsViewed == false)
+                    {
+                        <td>
+                            Pending
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Viewed
+                        </td>
+                    }
+                }
+                <td>
+                    <a href="@Url.Action("EditComplaint", new {id = item.complaintId})" class="fa fa-pencil-square-o" style="font-size: 19px;"></a>
+                </td>
+            </tr>
+                    }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SmartSchoolManagementSystem.Department>
+
+@{
+    ViewBag.Title = "DepartmentList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Department</li>
+        <li class="active">List of Department</li>
+    </ol>
+</div>
+<h2>List of Department</h2>
+<p>
+    @Html.ActionLink("Add Department", "AddDepartment", null, new { @class = "btn btn-primary" })
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Department Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", new {id = item.DepartmentId})" class="fa fa-pencil-square-o" style="font-size: 19px"></a> |
+                    <a href="@Url.Action("Delete", new {id = item.DepartmentId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#table_id").dataTable();
+        });
+    </script>
+}

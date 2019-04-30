@@ -1,0 +1,40 @@
+﻿@model SmartSchoolManagementSystem.Course
+
+@{
+    ViewBag.Title = "CourseApply";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>courses Apply Confirmation</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CourseId)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <h4>Are You Sure You Want to Enroll in this Course</h4>
+                <input type="submit" value="Confirm Apply" class="btn btn-default" />
+                <a style="color:darkblue" href="@Url.Action("Index", "Course")">Back to Course List</a>
+            </div>
+        </div>
+    </div>
+}
