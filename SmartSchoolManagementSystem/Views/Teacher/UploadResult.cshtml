@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 }
 
-<h2>MarkAttendance</h2>
+<h2>Upload Result</h2>
 
 @using (Html.BeginForm())
 {
@@ -23,43 +23,21 @@
                     <th>
                         Grade
                     </th>
-                    <th>
-                        Allocate
-                    </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Students)
+                @for (int i = 0; i < Model.Students.Count; i++)
                 {
+                    @Html.HiddenFor(model => model.Students[i].StudentId)
+                    @Html.HiddenFor(model => model.Lookup.LookupId)
                     <tr>
                         <td>
-                            @item.FirstName @item.LastName
+                            @Html.DisplayFor(model => model.Students[i].FirstName) @Html.DisplayFor(model => model.Students[i].LastName)
                         <td>
-                            @item.RegistrationNumber
-                        </td>
-                        @{
-                            var GradeList = new List<StudentResult>
-                    {
-                        new StudentResult {Grade = "A"},
-                        new StudentResult {Grade = "A-"},
-                        new StudentResult {Grade = "B+"},
-                        new StudentResult {Grade = "B"},
-                        new StudentResult {Grade = "B-"},
-                        new StudentResult {Grade = "C+"},
-                        new StudentResult {Grade = "C"},
-                        new StudentResult {Grade = "C-"},
-                        new StudentResult {Grade = "D+"},
-                        new StudentResult {Grade = "D"},
-                        new StudentResult {Grade = "F"},
-                        new StudentResult {Grade = "W"},
-                        new StudentResult {Grade = "I"},
-                    };
-                        }
-                        <td>
-                            @Html.DropDownListFor(model => model.StudentResult.Grade, new SelectList(GradeList, "Grade", "Grade"), new { @class = "form-control" })
+                            @Html.DisplayFor(model => model.Students[i].RegistrationNumber)
                         </td>
                         <td>
-                            <a href="@Url.Action("UploadStudentResult", new {id = item.StudentId, idd = Model.Course.CourseId})" class="fa fa-paper-plane" style="font-size: 19px;"></a>
+                            @Html.DropDownListFor(model => model.Lookups[i].LookupId, new SelectList(Model.Lookups, "LookupId", "Name"), new { @class = "form-control" })
                         </td>
                     </tr>
                 }
@@ -72,7 +50,7 @@
             </div>
         </div>
     </div>
-                            }
+}
 
 <div>
     @Html.ActionLink("Back", "Index")

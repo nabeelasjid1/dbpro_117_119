@@ -219,6 +219,7 @@
     <Compile Include="CollectionViewModel\ChallanCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\CollectionOfAllViewModel.cs" />
     <Compile Include="CollectionViewModel\CourseCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\MarkAttendenceViewModel.cs" />
     <Compile Include="CollectionViewModel\ParentCollectionViewModel.cs" />
     <Compile Include="CollectionViewModel\ParentManageAccountViewModel.cs" />
     <Compile Include="CollectionViewModel\ParentStudentRelationViewModel.cs" />
@@ -227,6 +228,8 @@
     <Compile Include="CollectionViewModel\StudentManageAccountViewModel.cs" />
     <Compile Include="CollectionViewModel\StudentRegisteredCoursesViewModel.cs" />
     <Compile Include="CollectionViewModel\TeacherCollectionViewModel.cs" />
+    <Compile Include="CollectionViewModel\TeacherManageAccountViewModel.cs" />
+    <Compile Include="CollectionViewModel\UploadResultViewModel.cs" />
     <Compile Include="complaint.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
@@ -241,6 +244,9 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Course.cs">
+      <DependentUpon>DB40Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CourseAttendence.cs">
       <DependentUpon>DB40Model.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
@@ -523,6 +529,19 @@
     <Content Include="Views\Student\ChallansList.cshtml" />
     <Content Include="Views\Parent\StudentsList4.cshtml" />
     <Content Include="Views\Parent\ChallansList.cshtml" />
+    <Content Include="Views\Shared\_TeacherLayout.cshtml" />
+    <Content Include="Views\Teacher\ManageAccount.cshtml" />
+    <Content Include="Views\Teacher\ViewProfile.cshtml" />
+    <Content Include="Views\Teacher\CoursesList.cshtml" />
+    <Content Include="Views\Teacher\MarkAttendance.cshtml" />
+    <Content Include="Views\Teacher\CoursesList1.cshtml" />
+    <Content Include="Views\Teacher\UploadResult.cshtml" />
+    <Content Include="Views\Teacher\UploadStudentResult.cshtml" />
+    <Content Include="Views\Student\ViewProfile.cshtml" />
+    <Content Include="Views\Parent\ViewProfile.cshtml" />
+    <Content Include="Views\Parent\StudentsList5.cshtml" />
+    <Content Include="Views\Parent\StudentsList6.cshtml" />
+    <Content Include="Views\Admin\StudentsList1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartSchoolManagementSystem.complaint>
+﻿@model SmartSchoolManagementSystem.CollectionViewModel.ParentAdminStudentRelationViewModel
 
 @{
     ViewBag.Title = "CompliantsList";
@@ -16,10 +16,6 @@
     </ol>
 </div>
 <h2>List of Complaints</h2>
-
-<p>
-    @Html.ActionLink("Add Complaint", "AddComplaint", null, new { @class = "btn btn-primary" })
-</p>
 <table id="table_id" class="table">
     <thead>
         <tr>
@@ -36,7 +32,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Complaints)
         {
             <tr>
                 <td>
@@ -60,7 +56,7 @@
                     }
                 }
                 <td>
-                    <a href="@Url.Action("DeleteComplaint", new {id = item.complaintId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                    <a href="@Url.Action("DeleteComplaint", new {id = item.complaintId, idd = Model.Student.StudentId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
                 </td>
             </tr>
                     }

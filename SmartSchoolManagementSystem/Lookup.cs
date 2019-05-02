@@ -19,6 +19,7 @@ namespace SmartSchoolManagementSystem
         {
             this.Students = new HashSet<Student>();
             this.StudentAttendences = new HashSet<StudentAttendence>();
+            this.StudentResults = new HashSet<StudentResult>();
         }
     
         public int LookupId { get; set; }
@@ -29,5 +30,7 @@ namespace SmartSchoolManagementSystem
         public virtual ICollection<Student> Students { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentAttendence> StudentAttendences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentResult> StudentResults { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DB40ModelStoreContainer" CdmEntityContainer="DB40Entities4">
+  <EntityContainerMapping StorageEntityContainer="DB40ModelStoreContainer" CdmEntityContainer="DB40Entities">
     <EntitySetMapping Name="C__MigrationHistory">
       <EntityTypeMapping TypeName="DB40Model.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -60,18 +60,17 @@
     <EntitySetMapping Name="Chalans">
       <EntityTypeMapping TypeName="DB40Model.Chalan">
         <MappingFragment StoreEntitySet="Chalan">
-          <ScalarProperty Name="Fee" ColumnName="Fee" />
           <ScalarProperty Name="ChalanId" ColumnName="ChalanId" />
           <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
           <ScalarProperty Name="ChalanDate" ColumnName="ChalanDate" />
           <ScalarProperty Name="CurrentYear" ColumnName="CurrentYear" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ClassAttendences">
       <EntityTypeMapping TypeName="DB40Model.ClassAttendence">
         <MappingFragment StoreEntitySet="ClassAttendence">
-          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
           <ScalarProperty Name="ClassAttendenceId" ColumnName="ClassAttendenceId" />
           <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
         </MappingFragment>
@@ -95,6 +94,15 @@
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="CreditHrs" ColumnName="CreditHrs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseAttendences">
+      <EntityTypeMapping TypeName="DB40Model.CourseAttendence">
+        <MappingFragment StoreEntitySet="CourseAttendence">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AttendenceId" ColumnName="AttendenceId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

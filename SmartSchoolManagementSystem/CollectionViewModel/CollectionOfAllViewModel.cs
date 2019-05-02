@@ -26,6 +26,8 @@ namespace SmartSchoolManagementSystem.CollectionViewModel
         public Course Course { get; set; }
         public Hostel Hostel { get; set; }
         public Notice Notice { get; set; }
+        public List<ParentStudentRelation> Rel { get; set; }
+        public List<InstructorCourseRelation> Rel2 { get; set; }
 
     }
 }

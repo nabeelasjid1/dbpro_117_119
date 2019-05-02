@@ -54,6 +54,12 @@
         <ul class="nav menu">
             <li class="active"><a href="@Url.Action("Index", "Student")"><em class="fa fa-dashboard">&nbsp;</em> DashBoard</a></li>
             <li>
+                <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Profile</button>
+                <div style="width: 100% !important" class="children content">
+                    @Html.ActionLink("View Profile", "ViewProfile", "Student", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })
+                </div>
+            </li>
+            <li>
                 <button class="collapsible"><em class="fa fa-user">&nbsp; &nbsp;</em>Manage Account</button>
                 <div style="width: 100% !important" class="children content">
                     @Html.ActionLink("Manage Account", "ManageAccount", "Student", null, new { @class = "list-group-item", @style = "margin: 0px -20px; font-size: 13px" })

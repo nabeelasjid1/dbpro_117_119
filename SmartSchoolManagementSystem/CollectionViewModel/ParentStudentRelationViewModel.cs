@@ -14,5 +14,7 @@ namespace SmartSchoolManagementSystem.CollectionViewModel
         public List<Student> Students { get; set; }
         public int HostelId { get; set; }
         public Hostel Hostel { get; set; }
+        public List<complaint> Complaints { get; set; }
+        public complaint Complaint { get; set; }
     }
 }

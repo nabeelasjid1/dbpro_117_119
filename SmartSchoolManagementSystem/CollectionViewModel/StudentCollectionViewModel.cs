@@ -14,7 +14,10 @@ namespace SmartSchoolManagementSystem.CollectionViewModel
         public int ParentId { get; set; }
         public int DepartmentId { get; set; }
         public List<Parent> Parents { get; set; }
+        public Parent Parent { get; set; }
         public List<Student> Students { get; set; }
         public List<Department> Departments { get; set; }
+        public List<Lookup> Lookups { get; set; }
+        public Lookup Lookup { get; set; }
     }
 }

@@ -4,50 +4,54 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="88e3fe9fabb14c809c279d97961ee00a" Name="Diagram1">
-        <EntityTypeShape EntityType="DB40Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.AspNetRole" Width="1.5" PointX="1.5" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.AspNetUserClaim" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.AspNetUserLogin" Width="1.5" PointX="3" PointY="36.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.AspNetUser" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Chalan" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.ClassAttendence" Width="1.5" PointX="10.5" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.complaint" Width="1.5" PointX="6" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Course" Width="1.5" PointX="9" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Department" Width="1.5" PointX="3" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.DepartmentCourseRelation" Width="1.5" PointX="13.25" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.DepartmentInstructorRelation" Width="1.5" PointX="8.25" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.DepartmentStudentRelation" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Event" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Hostel" Width="1.5" PointX="3" PointY="33.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Instructor" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.InstructorCourseRelation" Width="1.5" PointX="11.25" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.InstructorStudentRelation" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Lookup" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.News" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Notice" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Parent" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.ParentStudentRelation" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.Student" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.StudentAttendence" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.StudentChalanRelation" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.StudentcomplaintRelation" Width="1.5" PointX="8.25" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.StudentEventRelation" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.StudentHostelRelation" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.StudentRegSubjectRelation" Width="1.5" PointX="11.25" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.StudentResult" Width="1.5" PointX="5.25" PointY="39.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB40Model.sysdiagram" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="6d65c143050c4a64bff867cd2ea0cdf7" Name="Diagram1">
+        <EntityTypeShape EntityType="DB40Model.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.AspNetRole" Width="1.5" PointX="1.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.AspNetUserClaim" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.AspNetUserLogin" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.AspNetUser" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Chalan" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.ClassAttendence" Width="1.5" PointX="6" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.complaint" Width="1.5" PointX="6" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Course" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.CourseAttendence" Width="1.5" PointX="11.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Department" Width="1.5" PointX="3" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.DepartmentCourseRelation" Width="1.5" PointX="11.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.DepartmentInstructorRelation" Width="1.5" PointX="8.25" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.DepartmentStudentRelation" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Event" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Hostel" Width="1.5" PointX="3" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Instructor" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.InstructorCourseRelation" Width="1.5" PointX="11.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.InstructorStudentRelation" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Lookup" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.News" Width="1.5" PointX="8.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Notice" Width="1.5" PointX="10.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Parent" Width="1.5" PointX="3" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.ParentStudentRelation" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.Student" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.StudentAttendence" Width="1.5" PointX="8.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.StudentChalanRelation" Width="1.5" PointX="8.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.StudentcomplaintRelation" Width="1.5" PointX="8.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.StudentEventRelation" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.StudentHostelRelation" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.StudentRegSubjectRelation" Width="1.5" PointX="11.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.StudentResult" Width="1.5" PointX="8.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB40Model.sysdiagram" Width="1.5" PointX="10.75" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="DB40Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_Instructor_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_Parent_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_Student_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_StudentChalanRelation_Chalan" ManuallyRouted="false" />
-        <AssociationConnector Association="DB40Model.FK_ClassAttendence_StudentAttendence" ManuallyRouted="false" />
+        <AssociationConnector Association="DB40Model.FK_CourseAttendence_ClassAttendence" ManuallyRouted="false" />
+        <AssociationConnector Association="DB40Model.FK_StudentAttendence_ClassAttendence" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_StudentcomplaintRelation_complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="DB40Model.FK_CourseAttendence_Course" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_DepartmentCourseRelation_Course" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_InstructorCourseRelation_Course" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_StudentRegSubjectRelation_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="DB40Model.FK_StudentResult_Course" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_DepartmentCourseRelation_Department" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_DepartmentInstructorRelation_Department" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_DepartmentStudentRelation_Department" ManuallyRouted="false" />
@@ -60,6 +64,7 @@
         <AssociationConnector Association="DB40Model.FK_InstructorStudentRelation_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_Student_Lookup" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_StudentAttendence_Lookup" ManuallyRouted="false" />
+        <AssociationConnector Association="DB40Model.FK_StudentResult_StudentResult" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_ParentStudentRelation_Parent" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_ParentStudentRelation_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_StudentAttendence_Student" ManuallyRouted="false" />
@@ -70,7 +75,6 @@
         <AssociationConnector Association="DB40Model.FK_StudentRegSubjectRelation_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_StudentResult_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="DB40Model.FK_ClassAttendence_Course" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -71,8 +71,8 @@
     <Property Name="IsPaid" Type="Boolean" Nullable="false" />
     <Property Name="ChalanDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CurrentYear" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="StudentChalanRelations" Relationship="Self.FK_StudentChalanRelation_Chalan" FromRole="Chalan" ToRole="StudentChalanRelation" />
     <Property Name="Fee" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StudentChalanRelations" Relationship="Self.FK_StudentChalanRelation_Chalan" FromRole="Chalan" ToRole="StudentChalanRelation" />
   </EntityType>
   <EntityType Name="ClassAttendence">
     <Key>
@@ -80,9 +80,8 @@
     </Key>
     <Property Name="ClassAttendenceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="StudentAttendence" Relationship="Self.FK_ClassAttendence_StudentAttendence" FromRole="ClassAttendence" ToRole="StudentAttendence" />
-    <Property Name="CourseId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Course" Relationship="DB40Model.FK_ClassAttendence_Course" FromRole="ClassAttendence" ToRole="Course" />
+    <NavigationProperty Name="CourseAttendences" Relationship="Self.FK_CourseAttendence_ClassAttendence" FromRole="ClassAttendence" ToRole="CourseAttendence" />
+    <NavigationProperty Name="StudentAttendences" Relationship="Self.FK_StudentAttendence_ClassAttendence" FromRole="ClassAttendence" ToRole="StudentAttendence" />
   </EntityType>
   <EntityType Name="complaint">
     <Key>
@@ -103,10 +102,21 @@
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreditHrs" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CourseAttendences" Relationship="Self.FK_CourseAttendence_Course" FromRole="Course" ToRole="CourseAttendence" />
     <NavigationProperty Name="DepartmentCourseRelations" Relationship="Self.FK_DepartmentCourseRelation_Course" FromRole="Course" ToRole="DepartmentCourseRelation" />
     <NavigationProperty Name="InstructorCourseRelations" Relationship="Self.FK_InstructorCourseRelation_Course" FromRole="Course" ToRole="InstructorCourseRelation" />
     <NavigationProperty Name="StudentRegSubjectRelations" Relationship="Self.FK_StudentRegSubjectRelation_Course" FromRole="Course" ToRole="StudentRegSubjectRelation" />
-    <NavigationProperty Name="ClassAttendences" Relationship="DB40Model.FK_ClassAttendence_Course" FromRole="Course" ToRole="ClassAttendence" />
+    <NavigationProperty Name="StudentResults" Relationship="Self.FK_StudentResult_Course" FromRole="Course" ToRole="StudentResult" />
+  </EntityType>
+  <EntityType Name="CourseAttendence">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AttendenceId" Type="Int32" Nullable="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ClassAttendence" Relationship="Self.FK_CourseAttendence_ClassAttendence" FromRole="CourseAttendence" ToRole="ClassAttendence" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_CourseAttendence_Course" FromRole="CourseAttendence" ToRole="Course" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
@@ -223,6 +233,7 @@
     <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Students" Relationship="Self.FK_Student_Lookup" FromRole="Lookup" ToRole="Student" />
     <NavigationProperty Name="StudentAttendences" Relationship="Self.FK_StudentAttendence_Lookup" FromRole="Lookup" ToRole="StudentAttendence" />
+    <NavigationProperty Name="StudentResults" Relationship="Self.FK_StudentResult_StudentResult" FromRole="Lookup" ToRole="StudentResult" />
   </EntityType>
   <EntityType Name="News">
     <Key>
@@ -299,11 +310,12 @@
   <EntityType Name="StudentAttendence">
     <Key>
       <PropertyRef Name="AttendenceId" />
+      <PropertyRef Name="StudentId" />
     </Key>
-    <Property Name="AttendenceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AttendenceId" Type="Int32" Nullable="false" />
     <Property Name="StudentId" Type="Int32" Nullable="false" />
     <Property Name="AttendenceStatus" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="ClassAttendence" Relationship="Self.FK_ClassAttendence_StudentAttendence" FromRole="StudentAttendence" ToRole="ClassAttendence" />
+    <NavigationProperty Name="ClassAttendence" Relationship="Self.FK_StudentAttendence_ClassAttendence" FromRole="StudentAttendence" ToRole="ClassAttendence" />
     <NavigationProperty Name="Lookup" Relationship="Self.FK_StudentAttendence_Lookup" FromRole="StudentAttendence" ToRole="Lookup" />
     <NavigationProperty Name="Student" Relationship="Self.FK_StudentAttendence_Student" FromRole="StudentAttendence" ToRole="Student" />
   </EntityType>
@@ -364,7 +376,9 @@
     </Key>
     <Property Name="StudentId" Type="Int32" Nullable="false" />
     <Property Name="CourseId" Type="Int32" Nullable="false" />
-    <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Grade" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_StudentResult_Course" FromRole="StudentResult" ToRole="Course" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_StudentResult_StudentResult" FromRole="StudentResult" ToRole="Lookup" />
     <NavigationProperty Name="Student" Relationship="Self.FK_StudentResult_Student" FromRole="StudentResult" ToRole="Student" />
   </EntityType>
   <EntityType Name="sysdiagram">
@@ -453,15 +467,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ClassAttendence_StudentAttendence">
-    <End Role="StudentAttendence" Type="Self.StudentAttendence" Multiplicity="1" />
-    <End Role="ClassAttendence" Type="Self.ClassAttendence" Multiplicity="0..1" />
+  <Association Name="FK_CourseAttendence_ClassAttendence">
+    <End Role="ClassAttendence" Type="Self.ClassAttendence" Multiplicity="1" />
+    <End Role="CourseAttendence" Type="Self.CourseAttendence" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="StudentAttendence">
-        <PropertyRef Name="AttendenceId" />
-      </Principal>
-      <Dependent Role="ClassAttendence">
+      <Principal Role="ClassAttendence">
         <PropertyRef Name="ClassAttendenceId" />
+      </Principal>
+      <Dependent Role="CourseAttendence">
+        <PropertyRef Name="AttendenceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentAttendence_ClassAttendence">
+    <End Role="ClassAttendence" Type="Self.ClassAttendence" Multiplicity="1" />
+    <End Role="StudentAttendence" Type="Self.StudentAttendence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassAttendence">
+        <PropertyRef Name="ClassAttendenceId" />
+      </Principal>
+      <Dependent Role="StudentAttendence">
+        <PropertyRef Name="AttendenceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -474,6 +500,18 @@
       </Principal>
       <Dependent Role="StudentcomplaintRelation">
         <PropertyRef Name="complaintId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAttendence_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseAttendence" Type="Self.CourseAttendence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseAttendence">
+        <PropertyRef Name="CourseId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -510,6 +548,18 @@
       </Principal>
       <Dependent Role="StudentRegSubjectRelation">
         <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentResult_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="StudentResult" Type="Self.StudentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="StudentResult">
+        <PropertyRef Name="CourseId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -657,6 +707,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StudentResult_StudentResult">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="1" />
+    <End Role="StudentResult" Type="Self.StudentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="LookupId" />
+      </Principal>
+      <Dependent Role="StudentResult">
+        <PropertyRef Name="Grade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ParentStudentRelation_Parent">
     <End Role="Parent" Type="Self.Parent" Multiplicity="1" />
     <End Role="ParentStudentRelation" Type="Self.ParentStudentRelation" Multiplicity="*" />
@@ -769,7 +831,7 @@
     <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="DB40Entities4" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DB40Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -779,6 +841,7 @@
     <EntitySet Name="ClassAttendences" EntityType="Self.ClassAttendence" />
     <EntitySet Name="complaints" EntityType="Self.complaint" />
     <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="CourseAttendences" EntityType="Self.CourseAttendence" />
     <EntitySet Name="Departments" EntityType="Self.Department" />
     <EntitySet Name="DepartmentCourseRelations" EntityType="Self.DepartmentCourseRelation" />
     <EntitySet Name="DepartmentInstructorRelations" EntityType="Self.DepartmentInstructorRelation" />
@@ -826,13 +889,21 @@
       <End Role="Chalan" EntitySet="Chalans" />
       <End Role="StudentChalanRelation" EntitySet="StudentChalanRelations" />
     </AssociationSet>
-    <AssociationSet Name="FK_ClassAttendence_StudentAttendence" Association="Self.FK_ClassAttendence_StudentAttendence">
-      <End Role="StudentAttendence" EntitySet="StudentAttendences" />
+    <AssociationSet Name="FK_CourseAttendence_ClassAttendence" Association="Self.FK_CourseAttendence_ClassAttendence">
       <End Role="ClassAttendence" EntitySet="ClassAttendences" />
+      <End Role="CourseAttendence" EntitySet="CourseAttendences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentAttendence_ClassAttendence" Association="Self.FK_StudentAttendence_ClassAttendence">
+      <End Role="ClassAttendence" EntitySet="ClassAttendences" />
+      <End Role="StudentAttendence" EntitySet="StudentAttendences" />
     </AssociationSet>
     <AssociationSet Name="FK_StudentcomplaintRelation_complaint" Association="Self.FK_StudentcomplaintRelation_complaint">
       <End Role="complaint" EntitySet="complaints" />
       <End Role="StudentcomplaintRelation" EntitySet="StudentcomplaintRelations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAttendence_Course" Association="Self.FK_CourseAttendence_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="CourseAttendence" EntitySet="CourseAttendences" />
     </AssociationSet>
     <AssociationSet Name="FK_DepartmentCourseRelation_Course" Association="Self.FK_DepartmentCourseRelation_Course">
       <End Role="Course" EntitySet="Courses" />
@@ -845,6 +916,10 @@
     <AssociationSet Name="FK_StudentRegSubjectRelation_Course" Association="Self.FK_StudentRegSubjectRelation_Course">
       <End Role="Course" EntitySet="Courses" />
       <End Role="StudentRegSubjectRelation" EntitySet="StudentRegSubjectRelations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentResult_Course" Association="Self.FK_StudentResult_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="StudentResult" EntitySet="StudentResults" />
     </AssociationSet>
     <AssociationSet Name="FK_DepartmentCourseRelation_Department" Association="Self.FK_DepartmentCourseRelation_Department">
       <End Role="Department" EntitySet="Departments" />
@@ -894,6 +969,10 @@
       <End Role="Lookup" EntitySet="Lookups" />
       <End Role="StudentAttendence" EntitySet="StudentAttendences" />
     </AssociationSet>
+    <AssociationSet Name="FK_StudentResult_StudentResult" Association="Self.FK_StudentResult_StudentResult">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="StudentResult" EntitySet="StudentResults" />
+    </AssociationSet>
     <AssociationSet Name="FK_ParentStudentRelation_Parent" Association="Self.FK_ParentStudentRelation_Parent">
       <End Role="Parent" EntitySet="Parents" />
       <End Role="ParentStudentRelation" EntitySet="ParentStudentRelations" />
@@ -934,21 +1013,5 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <AssociationSet Name="FK_ClassAttendence_Course" Association="DB40Model.FK_ClassAttendence_Course">
-      <End Role="Course" EntitySet="Courses" />
-      <End Role="ClassAttendence" EntitySet="ClassAttendences" />
-    </AssociationSet>
   </EntityContainer>
-  <Association Name="FK_ClassAttendence_Course">
-    <End Type="DB40Model.Course" Role="Course" Multiplicity="1" />
-    <End Type="DB40Model.ClassAttendence" Role="ClassAttendence" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="CourseId" />
-      </Principal>
-      <Dependent Role="ClassAttendence">
-        <PropertyRef Name="CourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

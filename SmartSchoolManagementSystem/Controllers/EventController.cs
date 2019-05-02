@@ -12,7 +12,7 @@ namespace SmartSchoolManagementSystem.Controllers
     {
         #region Initializations Section
         //Initialization of Database
-        DB40Entities4 db = new DB40Entities4();
+        DB40Entities db = new DB40Entities();
         //Initialization of User Managers for Adding Roles Based Users In database
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -50,16 +50,21 @@ namespace SmartSchoolManagementSystem.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Student")]
         public ActionResult EventApply(int id)
         {
-            StudentEventRelation rel = new StudentEventRelation();
             var vent = db.Events.Where(c => c.EventId == id).SingleOrDefault();
             var user = UserManager.FindById(User.Identity.GetUserId());
             var student = db.Students.Where(c => c.UserId == user.Id).SingleOrDefault();
-            rel.StudentId = student.StudentId;
-            rel.EventId = vent.EventId;
-            db.StudentEventRelations.Add(rel);
-            db.SaveChanges();
+            if (!db.StudentEventRelations.Any(c => c.StudentId == student.StudentId && c.EventId == id))
+            {
+                StudentEventRelation rel = new StudentEventRelation();
+                rel.StudentId = student.StudentId;
+                rel.EventId = vent.EventId;
+                db.StudentEventRelations.Add(rel);
+                db.SaveChanges();
+            }
+            
             return RedirectToAction("Index");
         }
         #endregion

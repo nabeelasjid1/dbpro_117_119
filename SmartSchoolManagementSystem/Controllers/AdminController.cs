@@ -15,7 +15,7 @@ namespace SmartSchoolManagementSystem.Controllers
     {
         #region Initialization
         //Initialization Of Database Entities
-        DB40Entities4 db = new DB40Entities4();
+        DB40Entities db = new DB40Entities();
         //Initialization of User Managers for Adding Roles Based Users In database
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
@@ -76,6 +76,7 @@ namespace SmartSchoolManagementSystem.Controllers
         #region Admin Pages
         //Index Having Statics of All Entities
         //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var collection = new CollectionOfAllViewModel
@@ -88,7 +89,9 @@ namespace SmartSchoolManagementSystem.Controllers
                 Courses = db.Courses.ToList(),
                 Events = db.Events.ToList(),
                 Notices = db.Notices.ToList(),
-                Hostels = db.Hostels.ToList()
+                Hostels = db.Hostels.ToList(),
+                Complaints = db.complaints.ToList()
+              
             };
             return View(collection);
         }
@@ -96,6 +99,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Department Section
         // GET List Of Departments
+        [Authorize(Roles = "Admin")]
         public ActionResult DepartmentList()
         {
             var model = db.Departments.ToList();
@@ -103,6 +107,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         //GET Add Department
+        [Authorize(Roles = "Admin")]
         public ActionResult AddDepartment()
         {
             return View();
@@ -110,13 +115,20 @@ namespace SmartSchoolManagementSystem.Controllers
         //POST Add Department
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddDepartment(Department model)
         {
+            if (db.Departments.Any(c => c.Name == model.Name))
+            {
+                ModelState.AddModelError("Name", "Name already present!");
+                return View(model);
+            }
             db.Departments.Add(model);
             db.SaveChanges();
             return RedirectToAction("DepartmentList");
         }
         // GET: Edit Department
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var model = db.Departments.Where(c => c.DepartmentId == id).SingleOrDefault();
@@ -125,8 +137,14 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Department
         [HttpPost]
-        public ActionResult Edit(int id, DepartmentViewModel col)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(int id, Department col)
         {
+            if (db.Departments.Any(c => c.Name == col.Name))
+            {
+                ModelState.AddModelError("Name", "Name already present!");
+                return View(col);
+            }
             var model = db.Departments.Where(c => c.DepartmentId == id).SingleOrDefault();
             model.Name = col.Name;
             model.Description = col.Description;
@@ -135,6 +153,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         // GET: Delete Department
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var model = db.Departments.Where(c => c.DepartmentId == id).SingleOrDefault();
@@ -143,6 +162,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Department
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, DepartmentViewModel col)
         {
             var model = db.Departments.Where(c => c.DepartmentId == id).SingleOrDefault();
@@ -154,12 +174,14 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Notice Section
         // GET List Of Notice
+        [Authorize(Roles = "Admin")]
         public ActionResult NoticesList()
         {
             var model = db.Notices.ToList();
             return View(model);
         }
         //GET Add Notice
+        [Authorize(Roles = "Admin")]
         public ActionResult AddNotice()
         {
             return View();
@@ -167,6 +189,7 @@ namespace SmartSchoolManagementSystem.Controllers
         //POST Add Notice
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddNotice(Notice model)
         {
             db.Notices.Add(model);
@@ -174,6 +197,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("NoticesList");
         }
         // GET: Edit Notice
+        [Authorize(Roles = "Admin")]
         public ActionResult EditNotice(int id)
         {
             var model = db.Notices.Where(c => c.NoticeId == id).SingleOrDefault();
@@ -182,6 +206,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Notice
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditNotice(int id, NoticeViewModel col)
         {
             var model = db.Notices.Where(c => c.NoticeId == id).SingleOrDefault();
@@ -191,6 +216,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("NoticesList");
         }
         // GET: Delete Notice
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteNotice(int id)
         {
             var model = db.Notices.Where(c => c.NoticeId == id).SingleOrDefault();
@@ -199,6 +225,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Notice
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteNotice(int id, NoticeViewModel col)
         {
             var model = db.Notices.Where(c => c.NoticeId == id).SingleOrDefault();
@@ -210,12 +237,14 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Hostel Section
         // GET List Of Hostel
+        [Authorize(Roles = "Admin")]
         public ActionResult HostelsList()
         {
             var model = db.Hostels.ToList();
             return View(model);
         }
         //GET Add Hostel
+        [Authorize(Roles = "Admin")]
         public ActionResult AddHostel()
         {
             return View();
@@ -223,13 +252,20 @@ namespace SmartSchoolManagementSystem.Controllers
         //POST Add Hostel
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddHostel(Hostel model)
         {
+            if (db.Hostels.Any(c => c.Name == model.Name))
+            {
+                ModelState.AddModelError("Name", "Name already present!");
+                return View(model);
+            }
             db.Hostels.Add(model);
             db.SaveChanges();
             return RedirectToAction("HostelsList");
         }
         // GET: Edit Hostel
+        [Authorize(Roles = "Admin")]
         public ActionResult EditHostel(int id)
         {
             var model = db.Hostels.Where(c => c.HostelId == id).SingleOrDefault();
@@ -238,8 +274,14 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Hostel
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditHostel(int id, Hostel col)
         {
+            if (db.Hostels.Any(c => c.Name == col.Name))
+            {
+                ModelState.AddModelError("Name", "Name already present!");
+                return View(col);
+            }
             var model = db.Hostels.Where(c => c.HostelId == id).SingleOrDefault();
             model.Name = col.Name;
             model.Capacity = col.Capacity;
@@ -248,6 +290,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("HostelsList");
         }
         // GET: Delete Hostel
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteHostel(int id)
         {
             var model = db.Hostels.Where(c => c.HostelId == id).SingleOrDefault();
@@ -256,6 +299,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Hostel
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteHostel(int id, Hostel col)
         {
             var model = db.Hostels.Where(c => c.HostelId == id).SingleOrDefault();
@@ -268,6 +312,7 @@ namespace SmartSchoolManagementSystem.Controllers
         #region Parent Section
 
         // GET: Delete Parent
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteParent(string id)
         {
             var collection = new ParentCollectionViewModel
@@ -279,6 +324,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Parent
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteParent(string id, ParentCollectionViewModel col)
         {
             var parent = db.Parents.Where(c => c.UserId == id).SingleOrDefault();
@@ -289,6 +335,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("ParentsList");
         }
         // GET: Edit Parent
+        [Authorize(Roles = "Admin")]
         public ActionResult EditParent(int id)
         {
             var collection = new ParentCollectionViewModel
@@ -300,9 +347,22 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Parent
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditParent(int id, ParentCollectionViewModel model)
         {
             var parent = db.Parents.Where(c => c.ParentId == id).SingleOrDefault();
+            if (model.Parent.Email != model.Parent.UserName)
+            {
+                ModelState.AddModelError("Parent.Email", "Email and UserName Should be Same!");
+                ModelState.AddModelError("Parent.UserName", "Email and UserName Should be Same!");
+                return View(model);
+            }
+            else if(model.Parent.Email != parent.Email &&  db.AspNetUsers.Any(c=>c.Email == model.Parent.Email))
+            {
+                ModelState.AddModelError("Parent.Email", "Email is Already Present!");
+                ModelState.AddModelError("Parent.UserName", "UserName is Already Present!");
+                return View(model);
+            }
             parent.FirstName = model.Parent.FirstName;
             parent.LastName = model.Parent.LastName;
             parent.UserName = model.Parent.UserName;
@@ -321,12 +381,14 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         // GET List Of Parent
+        [Authorize(Roles = "Admin")]
         public ActionResult ParentsList()
         {
             var model = db.Parents.ToList();
             return View(model);
         }
         //GET Add Parent
+        [Authorize(Roles = "Admin")]
         public ActionResult AddParent()
         {
             var collection = new ParentCollectionViewModel
@@ -339,8 +401,20 @@ namespace SmartSchoolManagementSystem.Controllers
         //POST Add Parent
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddParent(ParentCollectionViewModel model)
         {
+            if (db.AspNetUsers.Any(c => c.Email == model.ApplicationUser.Email || c.UserName == model.ApplicationUser.UserName))
+            {
+                ModelState.AddModelError("ApplicationUser.Email", "UserNamr OR Email already present!");
+                ModelState.AddModelError("ApplicationUser.UserName", "UserName OR Email already present!");
+                return View(model);
+            }else if (model.ApplicationUser.Email != model.ApplicationUser.UserName)
+            {
+                ModelState.AddModelError("ApplicationUser.Email", "Email and UserName Should be Same!");
+                ModelState.AddModelError("ApplicationUser.UserName", "Email and UserName Should be Same!");
+                return View(model);
+            }
             var user = new ApplicationUser
             {
                 UserName = model.ApplicationUser.UserName,
@@ -375,6 +449,7 @@ namespace SmartSchoolManagementSystem.Controllers
         #region Student Section
 
         // GET: Delete Student
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteStudent(string id, int idd)
         {
             var collection = new StudentCollectionViewModel
@@ -387,6 +462,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Student
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteStudent(string id,int idd, StudentCollectionViewModel col)
         {
             var student = db.Students.Where(c => c.UserId == id).SingleOrDefault();
@@ -401,12 +477,14 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("StudentsList");
         }
         // GET: Edit Student
+        [Authorize(Roles = "Admin")]
         public ActionResult EditStudent(int id)
         {
             var collection = new StudentCollectionViewModel
             {
                 Student = db.Students.Where(c => c.StudentId == id).SingleOrDefault(),
                 Parents = db.Parents.ToList(),
+                Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
                 Departments = db.Departments.ToList()
             };
             return View(collection);
@@ -414,9 +492,54 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Student
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditStudent(int id, StudentCollectionViewModel model)
         {
             var student = db.Students.Where(c => c.StudentId == id).SingleOrDefault();
+            if (model.Student.Email != model.Student.UserName)
+            {
+                ModelState.AddModelError("Student.Email", "Email and UserName Should be Same!");
+                ModelState.AddModelError("Student.UserName", "Email and UserName Should be Same!");
+                var collection = new StudentCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Student = new Student(),
+                    Parents = db.Parents.ToList(),
+                    Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
+                    Departments = db.Departments.ToList(),
+                    ParentId = 0
+                };
+                return View(collection);
+            }
+            else if (model.Student.Email != student.Email && db.AspNetUsers.Any(c => c.Email == model.Student.Email))
+            {
+                ModelState.AddModelError("Student.Email", "Email is Already Present!");
+                ModelState.AddModelError("Student.UserName", "UserName is Already Present!");
+                var collection = new StudentCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Student = new Student(),
+                    Parents = db.Parents.ToList(),
+                    Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
+                    Departments = db.Departments.ToList(),
+                    ParentId = 0
+                };
+                return View(collection);
+            }
+            else if (db.Students.Any(c => c.RegistrationNumber == model.Student.RegistrationNumber && model.Student.RegistrationNumber != student.RegistrationNumber))
+            {
+                ModelState.AddModelError("Student.RegistrationNumber", "RegistrationNumber already Exist!");
+                var collection = new StudentCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Student = new Student(),
+                    Parents = db.Parents.ToList(),
+                    Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
+                    Departments = db.Departments.ToList(),
+                    ParentId = 0
+                };
+                return View(collection);
+            }
             student.FirstName = model.Student.FirstName;
             student.LastName = model.Student.LastName;
             student.UserName = model.Student.UserName;
@@ -437,6 +560,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         // GET List Of Student
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentsList()
         {
             var collection = db.Students.ToList();
@@ -444,6 +568,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         //GET Add Student
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddStudent()
         {
             var collection = new StudentCollectionViewModel
@@ -451,7 +576,9 @@ namespace SmartSchoolManagementSystem.Controllers
                 ApplicationUser = new RegisterViewModel(),
                 Student = new Student(),
                 Parents = db.Parents.ToList(),
-                Departments = db.Departments.ToList()
+                Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
+                Departments = db.Departments.ToList(),
+                ParentId = 0
             };
             return View(collection);
         }
@@ -459,8 +586,52 @@ namespace SmartSchoolManagementSystem.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddStudent(StudentCollectionViewModel model)
         {
+            if (db.AspNetUsers.Any(c => c.Email == model.ApplicationUser.Email || c.UserName == model.ApplicationUser.UserName))
+            {
+                ModelState.AddModelError("ApplicationUser.Email", "UserName OR Email already present!");
+                ModelState.AddModelError("ApplicationUser.UserName", "UserName OR Email already present!");
+                var collection = new StudentCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Student = new Student(),
+                    Parents = db.Parents.ToList(),
+                    Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
+                    Departments = db.Departments.ToList(),
+                    ParentId = 0
+                };
+                return View(collection);
+            }else if(model.ApplicationUser.Email != model.ApplicationUser.UserName)
+            {
+                ModelState.AddModelError("ApplicationUser.Email", "Email and UserName Should be Same!");
+                ModelState.AddModelError("ApplicationUser.UserName", "Email and UserName Should be Same!");
+                var collection = new StudentCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Student = new Student(),
+                    Parents = db.Parents.ToList(),
+                    Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
+                    Departments = db.Departments.ToList(),
+                    ParentId = 0
+                };
+                return View(collection);
+            }
+            else if (db.Students.Any(c=> c.RegistrationNumber == model.Student.RegistrationNumber))
+            {
+                ModelState.AddModelError("Student.RegistrationNumber", "RegistrationNumber already Exist!");
+                var collection = new StudentCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Student = new Student(),
+                    Parents = db.Parents.ToList(),
+                    Lookups = db.Lookups.Where(c => c.Category == "STUDENT_STATUS").ToList(),
+                    Departments = db.Departments.ToList(),
+                    ParentId = 0
+                };
+                return View(collection);
+            }
             var user = new ApplicationUser
             {
                 UserName = model.ApplicationUser.UserName,
@@ -509,8 +680,9 @@ namespace SmartSchoolManagementSystem.Controllers
         #endregion
 
         #region News Section
-        
+
         // GET List Of News
+        [Authorize(Roles = "Admin")]
         public ActionResult NewsList()
         {
             var model = db.News.ToList();
@@ -518,6 +690,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         //GET Add News
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddNews()
         {
             return View();
@@ -526,6 +699,7 @@ namespace SmartSchoolManagementSystem.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddNews(News model, HttpPostedFileBase imgfile)
         {
             string path = uploadingfile(imgfile);
@@ -547,6 +721,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("NewsList");
         }
         // GET: Edit News
+        [Authorize(Roles = "Admin")]
         public ActionResult EditNews(int id)
         {
             var model = db.News.Where(c => c.NewsId == id).SingleOrDefault();
@@ -555,6 +730,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit News
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditNews(int id, News model, HttpPostedFileBase imgfile)
         {
             var news = db.News.Where(c => c.NewsId == id).SingleOrDefault();
@@ -575,6 +751,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("NewsList");
         }
         // GET: Delete News
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteNews(int id)
         {
             var model = db.News.Where(c => c.NewsId == id).SingleOrDefault();
@@ -583,6 +760,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete News
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteNews(int id, News col)
         {
             var model = db.News.Where(c => c.NewsId == id).SingleOrDefault();
@@ -595,6 +773,7 @@ namespace SmartSchoolManagementSystem.Controllers
         #region Event Section
 
         // GET List Of Event
+        [Authorize(Roles = "Admin")]
         public ActionResult EventsList()
         {
             var model = db.Events.ToList();
@@ -602,6 +781,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         //GET Add Event
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddEvent()
         {
             return View();
@@ -610,8 +790,14 @@ namespace SmartSchoolManagementSystem.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddEvent(Event model, HttpPostedFileBase imgfile)
         {
+            if (db.Events.Any(c => c.Name == model.Name))
+            {
+                ModelState.AddModelError("Name", "Name already present!");
+                return View(model);
+            }
             string path = uploadingfile(imgfile);
             if (path.Equals("-1"))
             {
@@ -632,6 +818,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("EventsList");
         }
         // GET: Edit Event
+        [Authorize(Roles = "Admin")]
         public ActionResult EditEvent(int id)
         {
             var model = db.Events.Where(c => c.EventId == id).SingleOrDefault();
@@ -640,8 +827,14 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit News
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditEvent(int id, Event model, HttpPostedFileBase imgfile)
         {
+            if (db.Events.Any(c => c.Name == model.Name))
+            {
+                ModelState.AddModelError("Name", "Name already present!");
+                return View(model);
+            }
             var evnt = db.Events.Where(c => c.EventId == id).SingleOrDefault();
             string path = uploadingfile(imgfile);
             if (path.Equals("-1"))
@@ -661,6 +854,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("EventsList");
         }
         // GET: Delete News
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteEvent(int id)
         {
             var model = db.Events.Where(c => c.EventId == id).SingleOrDefault();
@@ -669,6 +863,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete News
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteEvent(int id, Event col)
         {
             var model = db.Events.Where(c => c.EventId == id).SingleOrDefault();
@@ -681,6 +876,7 @@ namespace SmartSchoolManagementSystem.Controllers
         #region Instructor Section
 
         // GET: Delete Teacher
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteTeacher(string id, int idd)
         {
             var collection = new TeacherCollectionViewModel
@@ -693,6 +889,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Student
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteTeacher(string id,int idd, TeacherCollectionViewModel col)
         {
             var instructor = db.Instructors.Where(c => c.UserId == id).SingleOrDefault();
@@ -705,6 +902,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("TeachersList");
         }
         // GET: Edit Student
+        [Authorize(Roles = "Admin")]
         public ActionResult EditTeacher(int id)
         {
             var collection = new TeacherCollectionViewModel
@@ -717,9 +915,34 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Student
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditTeacher(int id, TeacherCollectionViewModel model, HttpPostedFileBase imgfile)
         {
             var instructor = db.Instructors.Where(c => c.InstructorId == id).SingleOrDefault();
+            if (model.Instructor.Email != model.Instructor.UserName)
+            {
+                ModelState.AddModelError("Instructor.Email", "Email and UserName Should be Same!");
+                ModelState.AddModelError("Instructor.UserName", "Email and UserName Should be Same!");
+                var collection = new TeacherCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Instructor = new Instructor(),
+                    Departments = db.Departments.ToList()
+                };
+                return View(collection);
+            }
+            else if (model.Instructor.Email != instructor.Email && db.AspNetUsers.Any(c => c.Email == model.Instructor.Email))
+            {
+                ModelState.AddModelError("Instructor.Email", "Email is Already Present!");
+                ModelState.AddModelError("Instructor.UserName", "UserName is Already Present!");
+                var collection = new TeacherCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Instructor = new Instructor(),
+                    Departments = db.Departments.ToList()
+                };
+                return View(collection);
+            }
             string path = uploadingfile(imgfile);
             if (path.Equals("-1"))
             {
@@ -751,6 +974,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         // GET List Of Student
+        [Authorize(Roles = "Admin")]
         public ActionResult TeachersList()
         {
             var model = db.Instructors.ToList();
@@ -758,6 +982,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         //GET Add Student
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddTeacher()
         {
             var collection = new TeacherCollectionViewModel
@@ -772,8 +997,33 @@ namespace SmartSchoolManagementSystem.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddTeacher(TeacherCollectionViewModel model, HttpPostedFileBase imgfile)
         {
+            if (db.AspNetUsers.Any(c => c.Email == model.ApplicationUser.Email || c.UserName == model.ApplicationUser.UserName))
+            {
+                ModelState.AddModelError("ApplicationUser.Email", "UserName OR Email already present!");
+                ModelState.AddModelError("ApplicationUser.UserName", "UserName OR Email already present!");
+                var collection = new TeacherCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Instructor = new Instructor(),
+                    Departments = db.Departments.ToList()
+                };
+                return View(collection);
+            }
+            else if (model.ApplicationUser.Email != model.ApplicationUser.UserName)
+            {
+                ModelState.AddModelError("ApplicationUser.Email", "Email and UserName Should be Same!");
+                ModelState.AddModelError("ApplicationUser.UserName", "Email and UserName Should be Same!");
+                var collection = new TeacherCollectionViewModel
+                {
+                    ApplicationUser = new RegisterViewModel(),
+                    Instructor = new Instructor(),
+                    Departments = db.Departments.ToList()
+                };
+                return View(collection);
+            }
             var user = new ApplicationUser
             {
                 UserName = model.ApplicationUser.UserName,
@@ -830,6 +1080,7 @@ namespace SmartSchoolManagementSystem.Controllers
         #region Course Section
 
         // GET List Of Course
+        [Authorize(Roles = "Admin")]
         public ActionResult CoursesList()
         {
             var model = db.Courses.ToList();
@@ -837,6 +1088,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         //GET Add Course
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddCourse()
         {
             var collection = new CourseCollectionViewModel
@@ -851,8 +1103,20 @@ namespace SmartSchoolManagementSystem.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddCourse(CourseCollectionViewModel model, HttpPostedFileBase imgfile)
         {
+            if (db.Courses.Any(c => c.Title == model.Course.Title))
+            {
+                ModelState.AddModelError("Course.Title", "Course with same name already present!");
+                var collection = new CourseCollectionViewModel
+                {
+                    Course = new Course(),
+                    Departments = db.Departments.ToList(),
+                    Instructors = db.Instructors.ToList()
+                };
+                return View(collection);
+            }
             string path = uploadingfile(imgfile);
             if (path.Equals("-1"))
             {
@@ -886,6 +1150,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("CoursesList");
         }
         // GET: Edit Course
+        [Authorize(Roles = "Admin")]
         public ActionResult EditCourse(int id)
         {
             var model = db.Courses.Where(c => c.CourseId == id).SingleOrDefault();
@@ -894,9 +1159,15 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Course
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditCourse(int id, Course model, HttpPostedFileBase imgfile)
         {
             var course = db.Courses.Where(c => c.CourseId == id).SingleOrDefault();
+            if (model.Title != course.Title && db.Courses.Any(c => c.Title == model.Title))
+            {
+                ModelState.AddModelError("Title", "Course with same name already present!");
+                return View(model);
+            }
             string path = uploadingfile(imgfile);
             if (path.Equals("-1"))
             {
@@ -914,6 +1185,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return RedirectToAction("CoursesList");
         }
         // GET: Delete Course
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteCourse(int id)
         {
             var model = db.Courses.Where(c => c.CourseId == id).SingleOrDefault();
@@ -922,6 +1194,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Course
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteCourse(int id, Course col)
         {
             var course = db.Courses.Where(c => c.CourseId == id).SingleOrDefault();
@@ -938,6 +1211,7 @@ namespace SmartSchoolManagementSystem.Controllers
         #region Parent Student Relation Section
         //GET Make Relation ParentStudent
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult MakeParentStudentRelation()
         {
             var collection = new ParentStudentRelationViewModel
@@ -963,12 +1237,50 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Complaints Manage Section
         // GET List Of Complaints
-        public ActionResult ComplaintsList()
+        [Authorize(Roles = "Admin")]
+        public ActionResult StudentsList1()
         {
-            var model = db.complaints.ToList();
+            var studentRel = db.StudentcomplaintRelations.ToList();
+            List<Student> StudentsList = new List<Student>();
+            var students = db.Students.ToList();
+            foreach (var item in students)
+            {
+                foreach (var item1 in studentRel)
+                {
+                    if (item.StudentId == item1.StudentId)
+                    {
+                        StudentsList.Add(item);
+                    }
+                }
+
+            }
+            var model = StudentsList.Distinct();
             return View(model);
         }
+        // GET List Of Complaints
+        [Authorize(Roles = "Admin")]
+        public ActionResult ComplaintsList(int id)
+        {
+            var student = db.Students.Where(c => c.StudentId == id).FirstOrDefault();
+            var Rel = db.StudentcomplaintRelations.Where(c => c.StudentId == student.StudentId).ToList();
+            List<complaint> complaintsList = new List<complaint>();
+            var complaints = db.complaints.ToList();
+            foreach (var item in complaints)
+            {
+                foreach (var item1 in Rel)
+                {
+                    if (item.complaintId == item1.complaintId)
+                    {
+                        complaintsList.Add(item);
+                    }
+                }
+
+            }
+            var cor = complaintsList.Distinct();
+            return View(cor);
+        }
         // GET: Edit Complaint
+        [Authorize(Roles = "Admin")]
         public ActionResult EditComplaint(int id)
         {
             var model = db.complaints.Where(c => c.complaintId == id).SingleOrDefault();
@@ -977,6 +1289,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Edit Complaint
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditComplaint(int id, complaint col)
         {
             var model = db.complaints.Where(c => c.complaintId == id).SingleOrDefault();
@@ -984,13 +1297,14 @@ namespace SmartSchoolManagementSystem.Controllers
             model.Detail = col.Detail;
             model.IsViewed = col.IsViewed;
             db.SaveChanges();
-            return RedirectToAction("ComplaintsList");
+            return RedirectToAction("StudentsList1");
         }
         #endregion
 
         #region Challan Manage Section
         //GET Add Challan
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddChallan()
         {
             var collection = new ChallanCollectionViewModel
@@ -1003,6 +1317,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         //GET Add Challan
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddChallan(ChallanCollectionViewModel model)
         {
             var challan = new Chalan()
@@ -1025,6 +1340,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         //GET All Challans List
+        [Authorize(Roles = "Admin")]
         public ActionResult ChallansList()
         {
             var collection = db.Chalans.ToList();
@@ -1032,6 +1348,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         //GET Edit Challan
+        [Authorize(Roles = "Admin")]
         public ActionResult EditChallan(int id)
         {
             var collection = db.Chalans.Where(c => c.ChalanId == id).SingleOrDefault();
@@ -1039,6 +1356,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         //Post Edit Challan
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditChallan(int id, Chalan model)
         {
             var challan = db.Chalans.Where(c => c.ChalanId == id).SingleOrDefault();

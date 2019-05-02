@@ -23,6 +23,9 @@
                 Complaint Date
             </th>
             <th>
+                Complaint
+            </th>
+            <th>
                 Status
             </th>
             <th>Action</th>
@@ -34,6 +37,9 @@
             <tr>
                 <td>
                     @item.Date.ToString("MMMM dd, yyyy")
+                </td>
+                <td>
+                    @item.Detail
                 </td>
                 @{
                     if (item.IsViewed == false)

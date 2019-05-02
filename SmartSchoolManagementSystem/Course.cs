@@ -17,10 +17,11 @@ namespace SmartSchoolManagementSystem
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
+            this.CourseAttendences = new HashSet<CourseAttendence>();
             this.DepartmentCourseRelations = new HashSet<DepartmentCourseRelation>();
             this.InstructorCourseRelations = new HashSet<InstructorCourseRelation>();
             this.StudentRegSubjectRelations = new HashSet<StudentRegSubjectRelation>();
-            this.ClassAttendences = new HashSet<ClassAttendence>();
+            this.StudentResults = new HashSet<StudentResult>();
         }
     
         public int CourseId { get; set; }
@@ -30,12 +31,14 @@ namespace SmartSchoolManagementSystem
         public int CreditHrs { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseAttendence> CourseAttendences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DepartmentCourseRelation> DepartmentCourseRelations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InstructorCourseRelation> InstructorCourseRelations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentRegSubjectRelation> StudentRegSubjectRelations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClassAttendence> ClassAttendences { get; set; }
+        public virtual ICollection<StudentResult> StudentResults { get; set; }
     }
 }

@@ -14,11 +14,19 @@ namespace SmartSchoolManagementSystem
     
     public partial class ClassAttendence
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ClassAttendence()
+        {
+            this.CourseAttendences = new HashSet<CourseAttendence>();
+            this.StudentAttendences = new HashSet<StudentAttendence>();
+        }
+    
         public int ClassAttendenceId { get; set; }
         public System.DateTime AttendanceDate { get; set; }
-        public int CourseId { get; set; }
     
-        public virtual StudentAttendence StudentAttendence { get; set; }
-        public virtual Course Course { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseAttendence> CourseAttendences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentAttendence> StudentAttendences { get; set; }
     }
 }

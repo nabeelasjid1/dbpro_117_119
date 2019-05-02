@@ -13,10 +13,10 @@ namespace SmartSchoolManagementSystem
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DB40Entities4 : DbContext
+    public partial class DB40Entities : DbContext
     {
-        public DB40Entities4()
-            : base("name=DB40Entities4")
+        public DB40Entities()
+            : base("name=DB40Entities")
         {
         }
     
@@ -34,6 +34,7 @@ namespace SmartSchoolManagementSystem
         public virtual DbSet<ClassAttendence> ClassAttendences { get; set; }
         public virtual DbSet<complaint> complaints { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<CourseAttendence> CourseAttendences { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<DepartmentCourseRelation> DepartmentCourseRelations { get; set; }
         public virtual DbSet<DepartmentInstructorRelation> DepartmentInstructorRelations { get; set; }

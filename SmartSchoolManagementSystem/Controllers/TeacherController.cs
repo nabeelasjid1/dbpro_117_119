@@ -14,7 +14,7 @@ namespace SmartSchoolManagementSystem.Controllers
     {
         #region Initialization
         //Initialization Of Database Entities
-        DB40Entities4 db = new DB40Entities4();
+        DB40Entities db = new DB40Entities();
         //Initialization of User Managers for Adding Roles Based Users In database
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
@@ -86,15 +86,32 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Teacher Pages
         // GET: Teacher
+        [Authorize(Roles = "Teacher")]
         public ActionResult Index()
         {
-            return View();
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var teacher = db.Instructors.Where(c => c.UserId == user.Id).SingleOrDefault();
+            var DptRel = db.DepartmentInstructorRelations.Where(c => c.InstructorId == teacher.InstructorId).SingleOrDefault();
+            var department = db.Departments.Where(c => c.DepartmentId == DptRel.DepartmentId).SingleOrDefault();
+            var Rel = db.InstructorCourseRelations.Where(c => c.InstructorId == teacher.InstructorId).ToList();
+            var collection = new CollectionOfAllViewModel
+            {
+                Rel2 = Rel,
+                Hostels = db.Hostels.ToList(),
+                News = db.News.ToList(),
+                Notices = db.Notices.ToList(),
+                Department = department
+
+            };
+
+            return View(collection);
         }
         #endregion
 
         #region Manage Account Section
 
         // GET: ManageAccount Student
+        [Authorize(Roles = "Teacher")]
         public ActionResult ManageAccount()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -110,6 +127,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         // POST: ManageAccount Parent
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public ActionResult ManageAccount(TeacherManageAccountViewModel model, HttpPostedFileBase imgfile)
         {
             //var manager = new UserManager();
@@ -144,6 +162,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Profile Varification
         // GET: ManageAccount Student
+        [Authorize(Roles = "Teacher")]
         public ActionResult ViewProfile()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -152,8 +171,9 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         #endregion
 
-        #region Allocated Subjects
+        #region Mark Attendance
         // GET List Of  Allocated Subjects of Teacher
+        [Authorize(Roles = "Teacher")]
         public ActionResult CoursesList()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -194,11 +214,10 @@ namespace SmartSchoolManagementSystem.Controllers
                 }
 
             }
-            var student = StudentsList;
             var model = new MarkAttendenceViewModel
             {
-                Students = students,
-                Lookups = db.Lookups.ToList(),
+                Students = StudentsList,
+                Lookups = db.Lookups.Where(c=> c.Category == "ATTENDANCE_STATUS").ToList(),
                 Lookup = new Lookup(),
             };
             return View(model);
@@ -207,13 +226,44 @@ namespace SmartSchoolManagementSystem.Controllers
         [HttpPost]
         public ActionResult MarkAttendance(int id,MarkAttendenceViewModel model)
         {
-            
-            return View(model);
+            var todayDate = DateTime.Now.Date;
+            if (db.ClassAttendences.Any(c=> c.AttendanceDate == todayDate))
+            {
+                return RedirectToAction("CoursesList");
+            }
+            var ClassAttendence = new ClassAttendence
+            {
+                AttendanceDate = DateTime.Now.Date
+            };
+            var CourseAttendence = new CourseAttendence
+            {
+                AttendenceId = ClassAttendence.ClassAttendenceId,
+                CourseId = id
+            };
+            db.CourseAttendences.Add(CourseAttendence);
+            db.ClassAttendences.Add(ClassAttendence);
+            for(int i = 0; i < model.Students.Count; i++)
+            {
+                Student Std = model.Students[i];
+                Lookup lup = model.Lookups[i];
+                var student = db.Students.Where(c => c.StudentId == Std.StudentId).SingleOrDefault();
+                var status = db.Lookups.Where(c => c.LookupId == lup.LookupId).SingleOrDefault();
+                var studentAttendance = new StudentAttendence
+                {
+                    StudentId = Std.StudentId,
+                    AttendenceStatus = lup.LookupId,
+                    AttendenceId = ClassAttendence.ClassAttendenceId
+                };
+                db.StudentAttendences.Add(studentAttendance);
+            }
+            db.SaveChanges();
+            return RedirectToAction("CoursesList");
         }
         #endregion
 
         #region Upload Result
         // GET List Of  Allocated Subjects of Teacher
+        [Authorize(Roles = "Teacher")]
         public ActionResult CoursesList1()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -237,10 +287,11 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         // GET List Of All Students Registered In Subject
+        [Authorize(Roles = "Teacher")]
         public ActionResult UploadResult(int id)
         {
             var subject = db.Courses.Where(c => c.CourseId == id).SingleOrDefault();
-            var SubjectRel = db.StudentRegSubjectRelations.Where(c => c.SubjectId == subject.CourseId).ToList();
+            var SubjectRel = db.StudentRegSubjectRelations.Where(c => c.SubjectId == id).ToList();
             List<Student> StudentsList = new List<Student>();
             var students = db.Students.ToList();
             foreach (var item in students)
@@ -254,43 +305,38 @@ namespace SmartSchoolManagementSystem.Controllers
                 }
 
             }
-            var student = StudentsList;
             var model = new UploadResultViewModel
             {
-                Students = students,
+                Students = StudentsList,
                 StudentResult = new StudentResult(),
                 Course = subject,
+                Lookups = db.Lookups.Where(c => c.Category == "STUDENT_GRADE").ToList(),
                 StudentResults = db.StudentResults.ToList()
             };
             return View(model);
         }
         // GET List Of All Students Registered In Subject
-        public ActionResult UploadStudentResult(int id, int idd, UploadResultViewModel model )
-        {
-            var subject = db.Courses.Where(c => c.CourseId == idd).SingleOrDefault();
-            var student = db.Students.Where(c => c.StudentId == id).SingleOrDefault();
-            var collection = new StudentResult
-            {
-                StudentId = student.StudentId,
-                CourseId = subject.CourseId,
-                Grade = model.Grade
-            };
-            return View(collection);
-        }
         [HttpPost]
-        public ActionResult UploadStudentResult(int id, int idd, UploadResultViewModel model, MarkAttendenceViewModel model2)
+        [Authorize(Roles = "Teacher")]
+        public ActionResult UploadResult(int id, UploadResultViewModel model)
         {
-            var subject = db.Courses.Where(c => c.CourseId == idd).SingleOrDefault();
-            var student = db.Students.Where(c => c.StudentId == id).SingleOrDefault();
-            var collection = new StudentResult
+            for (int i = 0; i < model.Students.Count; i++)
             {
-                StudentId = student.StudentId,
-                CourseId = subject.CourseId,
-                Grade = model.StudentResult.Grade
-            };
-            db.StudentResults.Add(collection);
+                Student Std = model.Students[i];
+                Lookup lup = model.Lookups[i];
+                if (!db.StudentResults.Any(c=> c.StudentId == Std.StudentId && c.CourseId == id))
+                {
+                    var studentResult = new StudentResult
+                    {
+                        StudentId = Std.StudentId,
+                        Grade = lup.LookupId,
+                        CourseId = id
+                    };
+                    db.StudentResults.Add(studentResult);
+                }
+            }
             db.SaveChanges();
-            return View();
+            return RedirectToAction("CoursesList1");
         }
         #endregion
     }

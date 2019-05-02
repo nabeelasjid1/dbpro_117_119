@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Nabeel\Desktop\SmartSchool Management System\Project Files\Day19\SmartSchoolManagementSystem\SmartSchoolManagementSystem\DB40Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Nabeel\Desktop\SmartSchool Management System\Project Files\Day20\SmartSchoolManagementSystem\SmartSchoolManagementSystem\DB40Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

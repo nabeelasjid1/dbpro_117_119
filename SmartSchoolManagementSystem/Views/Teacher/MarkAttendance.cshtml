@@ -26,24 +26,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Students)
+                @for(int i = 0; i < Model.Students.Count; i++)
                 {
+                    @Html.HiddenFor(model => model.Students[i].StudentId)
+                    @Html.HiddenFor(model => model.Lookup.LookupId)
                     <tr>
                         <td>
-                            @item.FirstName @item.LastName
+                            @Html.DisplayFor(model => model.Students[i].FirstName) @Html.DisplayFor(model => model.Students[i].LastName)
                         <td>
-                            @item.RegistrationNumber
+                            @Html.DisplayFor(model => model.Students[i].RegistrationNumber)
                         </td>
-                        @{
-                            var StatusList = new List<Lookup>
-                    {
-                        new Lookup {Name = "Present"},
-                        new Lookup {Name = "Absent"},
-                        new Lookup {Name = "Leave"},
-                    };
-                        }
                         <td>
-                            @Html.DropDownListFor(model => model.Lookup.LookupId, new SelectList(StatusList, "LookupId", "Name"), new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.Lookups[i].LookupId, new SelectList(Model.Lookups, "LookupId", "Name"), new { @class = "form-control" })
                         </td>
                     </tr>
                             }

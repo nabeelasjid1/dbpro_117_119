@@ -13,7 +13,7 @@ namespace SmartSchoolManagementSystem.Controllers
     {
         #region Initialization
         //Initialization Of Database Entities
-        DB40Entities4 db = new DB40Entities4();
+        DB40Entities db = new DB40Entities();
         //Initialization of User Managers for Adding Roles Based Users In database
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
@@ -44,24 +44,16 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Parent Pages
         // GET: Parent
+        [Authorize(Roles = "Parent")]
         public ActionResult Index()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
             var parent = db.Parents.Where(c => c.UserId == user.Id).SingleOrDefault();
-            var Rel = db.ParentStudentRelations.Where(c => c.ParentId == parent.ParentId).FirstOrDefault();
-            var student = db.Students.Where(c => c.StudentId == Rel.StudentId).SingleOrDefault();
-            var DptRel = db.DepartmentStudentRelations.Where(c => c.StudentId == student.StudentId).FirstOrDefault();
-            var PrtRel = db.ParentStudentRelations.Where(c => c.StudentId == student.StudentId).FirstOrDefault();
-            var CompRel = db.StudentcomplaintRelations.Where(c => c.StudentId == student.StudentId).FirstOrDefault();
-            var CourRel = db.StudentRegSubjectRelations.Where(c => c.StudentId == student.StudentId).FirstOrDefault();
-            var EvntRel = db.StudentEventRelations.Where(c => c.StudentId == student.StudentId).FirstOrDefault();
-            //var HstlRel = db.StudentHostelRelations.Where(c => c.StudentId == student.StudentId).FirstOrDefault();
+            var Rel = db.ParentStudentRelations.Where(c => c.ParentId == parent.ParentId).ToList();
             var collection = new CollectionOfAllViewModel
             {
-                Department = db.Departments.Where(c => c.DepartmentId == DptRel.DepartmentId).SingleOrDefault(),
-                Complaints = db.complaints.Where(c => c.complaintId == CompRel.complaintId).ToList(),
-                Courses = db.Courses.Where(c => c.CourseId == CourRel.SubjectId).ToList(),
-                Events = db.Events.Where(c => c.EventId == EvntRel.EventId).ToList(),
+                Rel = Rel,
+                Hostels = db.Hostels.ToList(),
                 News = db.News.ToList(),
                 Notices = db.Notices.ToList()
 
@@ -75,13 +67,11 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Complains Section
         // GET List Of Complaint
-        public ActionResult CompliantsList()
+        [Authorize(Roles = "Parent")]
+        public ActionResult CompliantsList(int id)
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            var parent = db.Parents.Where(c => c.UserId == user.Id).SingleOrDefault();
-            var studentRel = db.ParentStudentRelations.Where(c => c.ParentId == parent.ParentId).FirstOrDefault();
-            var student = db.Students.Where(c => c.StudentId == studentRel.StudentId).FirstOrDefault();
-            var CompRel = db.StudentcomplaintRelations.Where(c => c.StudentId == student.StudentId).ToList();
+            var CompRel = db.StudentcomplaintRelations.Where(c => c.StudentId == id).ToList();
+            var student = db.Students.Where(c => c.StudentId == id).SingleOrDefault();
             List<complaint> ComplaintsList = new List<complaint>();
             var complaints = db.complaints.ToList();
             foreach (var item in complaints)
@@ -95,34 +85,92 @@ namespace SmartSchoolManagementSystem.Controllers
                 }
 
             }
-            var model = ComplaintsList.Distinct();
+            var ComplintsList = ComplaintsList;
+            var model = new ParentAdminStudentRelationViewModel
+            {
+                Complaints = ComplintsList,
+                Student = student
+            };
             return View(model);
         }
-        //GET Add Complaint
-        public ActionResult AddComplaint()
+        // GET List Of Students Of Parent
+        [Authorize(Roles = "Parent")]
+        public ActionResult StudentsList6()
         {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var parent = db.Parents.Where(c => c.UserId == user.Id).SingleOrDefault();
+            var studentRel = db.ParentStudentRelations.Where(c => c.ParentId == parent.ParentId).ToList();
+            List<Student> StudentsList = new List<Student>();
+            var students = db.Students.ToList();
+            foreach (var item in students)
+            {
+                foreach (var item1 in studentRel)
+                {
+                    if (item.StudentId == item1.StudentId)
+                    {
+                        StudentsList.Add(item);
+                    }
+                }
+
+            }
+            var model = StudentsList.Distinct();
+            return View(model);
+        }
+        // GET List Of Students Of Parent
+        [Authorize(Roles = "Parent")]
+        public ActionResult StudentsList5()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var parent = db.Parents.Where(c => c.UserId == user.Id).SingleOrDefault();
+            var studentRel = db.ParentStudentRelations.Where(c => c.ParentId == parent.ParentId).ToList();
+            List<Student> StudentsList = new List<Student>();
+            var students = db.Students.ToList();
+            foreach (var item in students)
+            {
+                foreach (var item1 in studentRel)
+                {
+                    if (item.StudentId == item1.StudentId)
+                    {
+                        StudentsList.Add(item);
+                    }
+                }
+
+            }
+            var model = StudentsList.Distinct();
+            return View(model);
+        }
+        // GET List Of Course where Student is Registered
+        //GET Add Complaint
+        [Authorize(Roles = "Parent")]
+        public ActionResult AddComplaint(int id)
+        {
+            var student = db.Students.Where(c => c.StudentId == id).FirstOrDefault();
+
             return View();
         }
         //POST Add Complaint
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddComplaint(complaint model)
+        [Authorize(Roles = "Parent")]
+        public ActionResult AddComplaint(int id, complaint model)
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            var parent = db.Parents.Where(c => c.UserId == user.Id).SingleOrDefault();
-            var studentRel = db.ParentStudentRelations.Where(c => c.ParentId == parent.ParentId).FirstOrDefault();
-            var student = db.Students.Where(c => c.StudentId == studentRel.StudentId).FirstOrDefault();
-            db.complaints.Add(model);
+            var complaint = new complaint
+            {
+                Date = model.Date,
+                Detail = model.Detail
+            };
+            db.complaints.Add(complaint);
             var StudentCompliantRelation = new StudentcomplaintRelation
             {
-                complaintId = model.complaintId,
-                StudentId = student.StudentId
+                complaintId = complaint.complaintId,
+                StudentId = id
             };
             db.StudentcomplaintRelations.Add(StudentCompliantRelation);
             db.SaveChanges();
-            return RedirectToAction("CompliantsList");
+            return RedirectToAction("StudentsList5");
         }
         // GET: Delete Complaint
+        [Authorize(Roles = "Parent")]
         public ActionResult DeleteComplaint(int id)
         {
             var model = db.complaints.Where(c => c.complaintId == id).SingleOrDefault();
@@ -131,23 +179,22 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Delete Complain
         [HttpPost]
-        public ActionResult DeleteComplaint(int id, complaint col)
+        [Authorize(Roles = "Parent")]
+        public ActionResult DeleteComplaint(int id,int idd, complaint col)
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            var parent = db.Parents.Where(c => c.UserId == user.Id).SingleOrDefault();
-            var studentRel = db.ParentStudentRelations.Where(c => c.ParentId == parent.ParentId).FirstOrDefault();
-            var student = db.Students.Where(c => c.StudentId == studentRel.StudentId).FirstOrDefault();
+            var student = db.Students.Where(c => c.StudentId == idd).FirstOrDefault();
             var complaint = db.complaints.Where(c => c.complaintId == id).SingleOrDefault();
             db.complaints.Remove(complaint);
             var StudentComplaintRelation = db.StudentcomplaintRelations.Where(c => c.complaintId == id && c.StudentId == student.StudentId).SingleOrDefault();
             db.StudentcomplaintRelations.Remove(StudentComplaintRelation);
             db.SaveChanges();
-            return RedirectToAction("CompliantsList");
+            return RedirectToAction("StudentsList6");
         }
         #endregion
 
         #region RegisterSubjects Section
         // GET List Of Students Of Parent
+        [Authorize(Roles = "Parent")]
         public ActionResult StudentsList()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -170,6 +217,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET List Of Course where Student is Registered
+        [Authorize(Roles = "Parent")]
         public ActionResult CoursesList(int id)
         {
             var student = db.Students.Where(c => c.StudentId == id).FirstOrDefault();
@@ -197,6 +245,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET: Unenroll Course
+        [Authorize(Roles = "Parent")]
         public ActionResult UnrollCourse(int id, int idd)
         {
             var model = db.Courses.Where(c => c.CourseId == id).SingleOrDefault();
@@ -205,6 +254,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Unenroll Course
         [HttpPost]
+        [Authorize(Roles = "Parent")]
         public ActionResult UnrollCourse(int id,int idd, Course col)
         {
             var student = db.Students.Where(c => c.StudentId == idd).FirstOrDefault();
@@ -218,6 +268,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region JoinedEvents Section
         // GET List Of Students Of Parent
+        [Authorize(Roles = "Parent")]
         public ActionResult StudentsList1()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -240,6 +291,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET List Of Events where Student has Joined
+        [Authorize(Roles = "Parent")]
         public ActionResult EventsList(int id)
         {
             var student = db.Students.Where(c => c.StudentId == id).FirstOrDefault();
@@ -266,6 +318,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET: Leave Event
+        [Authorize(Roles = "Parent")]
         public ActionResult LeaveEvent(int id, int idd)
         {
             var model = db.Events.Where(c => c.EventId == id).SingleOrDefault();
@@ -274,6 +327,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         // POST: Leave Event
         [HttpPost]
+        [Authorize(Roles = "Parent")]
         public ActionResult LeaveEvent(int id,int idd, Course col)
         {
             var student = db.Students.Where(c => c.StudentId == idd).FirstOrDefault();
@@ -286,8 +340,9 @@ namespace SmartSchoolManagementSystem.Controllers
         #endregion
 
         #region Manage Account Section
-        
+
         // GET: ManageAccount Student
+        [Authorize(Roles = "Parent")]
         public ActionResult ManageAccount()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -305,6 +360,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         // POST: ManageAccount Parent
         [HttpPost]
+        [Authorize(Roles = "Parent")]
         public ActionResult ManageAccount(ParentManageAccountViewModel model)
         {
             //var manager = new UserManager();
@@ -325,8 +381,20 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         #endregion
 
+        #region Profile Varification
+        // GET: ManageAccount Student
+        [Authorize(Roles = "Parent")]
+        public ActionResult ViewProfile()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var parent = db.Parents.Where(c => c.UserId == user.Id).SingleOrDefault();
+            return View(parent);
+        }
+        #endregion
+
         #region Hostel Section
         // GET List Of Students Of Parent
+        [Authorize(Roles = "Parent")]
         public ActionResult StudentsList2()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -349,6 +417,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET List Of Students Of Parent to apply for hostel
+        [Authorize(Roles = "Parent")]
         public ActionResult StudentsList3()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -371,6 +440,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET: All Hostels List
+        [Authorize(Roles = "Parent")]
         public ActionResult HostelsList(int id)
         {
             var student = db.Students.Where(c => c.StudentId == id).FirstOrDefault();
@@ -397,6 +467,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET: All Hostels List
+        [Authorize(Roles = "Parent")]
         public ActionResult AvailableHostelsList(int id)
         {
             var student = db.Students.Where(c => c.StudentId == id).FirstOrDefault();
@@ -409,6 +480,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET: Apply For Hostel
+        [Authorize(Roles = "Parent")]
         public ActionResult ApplyForHostel(int id, int idd)
         {
             var model = db.Hostels.Where(c => c.HostelId == id).SingleOrDefault();
@@ -416,6 +488,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         // POST: Apply For Hostel
         [HttpPost]
+        [Authorize(Roles = "Parent")]
         public ActionResult ApplyForHostel(int id,int idd, Hostel model)
         {
             var student = db.Students.Where(c => c.StudentId == idd).SingleOrDefault();
@@ -431,6 +504,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         // GET: Applied For Hostel
+        [Authorize(Roles = "Parent")]
         public ActionResult AppliedHostel()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -441,6 +515,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         // GET: UnApply For Hostel
+        [Authorize(Roles = "Parent")]
         public ActionResult UnApplyForHostel(int id,int idd)
         {
             var model = db.Hostels.Where(c => c.HostelId == id).SingleOrDefault();
@@ -448,6 +523,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
         // POST: UnApply For Hostel
         [HttpPost]
+        [Authorize(Roles = "Parent")]
         public ActionResult UnApplyForHostel(int id,int idd, Hostel model)
         {
             var student = db.Students.Where(c => c.StudentId == idd).FirstOrDefault();
@@ -461,6 +537,7 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #region Challans Section
         // GET List Of Students Of Parent
+        [Authorize(Roles = "Parent")]
         public ActionResult StudentsList4()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -483,6 +560,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return View(model);
         }
         // GET List Of Challans of Student
+        [Authorize(Roles = "Parent")]
         public ActionResult ChallansList(int id)
         {
             var student = db.Students.Where(c => c.StudentId == id).SingleOrDefault();
