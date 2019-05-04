@@ -1369,10 +1369,86 @@ namespace SmartSchoolManagementSystem.Controllers
         #endregion
 
         #region Reporting Section
+        //Student Attendence Subject-wise Reports 
         public ActionResult StudentAttendenceReports()
         {
             var data = db.StudentAttendenceReports.ToList();
             rptStudentAttendenceReport rpt = new rptStudentAttendenceReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+        //Student Dues Reports 
+        public ActionResult StudentDuesReport()
+        {
+            var data = db.StudentDuesReports.ToList();
+            rptStudentDuesReport rpt = new rptStudentDuesReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+        //Student Result Reports 
+        public ActionResult StudentResultReport()
+        {
+            var data = db.StudentResultReports.ToList();
+            rptStudentResultReport rpt = new rptStudentResultReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+
+        //Student Hostel Reports 
+        public ActionResult HostelDetailsReport()
+        {
+            var data = db.HostelDetailsReports.ToList();
+            rptHostelDetailsReport rpt = new rptHostelDetailsReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+
+        //Student Registered Subjects Reports 
+        public ActionResult StudentRegisterStubjectsReport()
+        {
+            var data = db.StudentRegisterStubjectsReports.ToList();
+            rptStudentRegisterStubjectsReport rpt = new rptStudentRegisterStubjectsReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+
+        //Student Joined Events Reports 
+        public ActionResult StudentJoinedEventsReport()
+        {
+            var data = db.StudentJoinedEventsReports.ToList();
+            rptStudentJoinedEventsReport rpt = new rptStudentJoinedEventsReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+
+        //Student Complaints Reports 
+        public ActionResult StudentComplaintsReport()
+        {
+            var data = db.StudentComplaintsReports.ToList();
+            rptStudentComplaintsReport rpt = new rptStudentComplaintsReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+
+        //Student Leave Report
+        public ActionResult StudentAttendenceLeaveReport()
+        {
+            var data = db.StudentAttendenceLeaveReports.ToList();
+            rptStudentAttendenceLeaveReport rpt = new rptStudentAttendenceLeaveReport();
             rpt.Load();
             rpt.SetDataSource(data);
             Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);

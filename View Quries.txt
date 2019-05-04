@@ -1,0 +1,98 @@
+create view StudentAttendenceReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber, AttendanceDate, Title,Name
+from StudentAttendence as sa
+join ClassAttendence ca
+on sa.AttendenceId = ca.ClassAttendenceId
+join CourseAttendence as coa
+on coa.AttendenceId = ca.ClassAttendenceId
+join Student as s
+on s.StudentId = sa.StudentId
+join Course as c
+on c.CourseId = coa.CourseId
+join Lookup as lkup
+on lkup.LookupId = sa.AttendenceStatus
+group by
+Title,AttendanceDate,FirstName, LastName,RegistrationNumber,Name
+
+create view StudentDuesReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber,Fee, IsPaid,YEAR(CurrentYear) as Year
+from Student as s
+join StudentChalanRelation as str
+on str.StudentId = s.StudentId
+join Chalan as c
+on c.ChalanId = str.ChalanId 
+group by
+FirstName, LastName,RegistrationNumber,Fee, IsPaid,YEAR(CurrentYear)
+
+
+create view StudentResultReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber, Title, Name
+from StudentResult as sr
+join StudentRegSubjectRelation as srb
+on srb.StudentId = sr.StudentId
+join Course as c
+on c.CourseId = sr.CourseId
+join Student as st
+on st.StudentId = srb.StudentId
+join Lookup as luk
+on luk.LookupId = sr.Grade
+group by Title,Name, FirstName, LastName, RegistrationNumber
+
+
+create view HostelDetailsReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber, Name
+from Student as s
+join StudentHostelRelation as sth
+on s.StudentId = sth.StudentId
+join Hostel as h
+on h.HostelId = sth.HostelId
+group by Name,FirstName, LastName, RegistrationNumber
+
+
+
+create view StudentRegisterStubjectsReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber, Title
+from Student as s
+join StudentRegSubjectRelation as str
+on s.StudentId = str.StudentId
+join Course as c
+on c.CourseId = str.SubjectId
+group by Title,FirstName,LastName,RegistrationNumber
+
+
+create view StudentJoinedEventsReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber, Name
+from Student as s
+join StudentEventRelation as str
+on str.StudentId = s.StudentId
+join Event as e
+on e.EventId = str.EventId
+group by Name,FirstName,LastName,RegistrationNumber
+
+
+create view StudentComplaintsReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber, Detail
+from Student as s
+join StudentcomplaintRelation as str
+on str.StudentId = s.StudentId
+join complaint as comp
+on comp.complaintId = str.complaintId
+group by FirstName,LastName,RegistrationNumber,Detail
+
+
+create view StudentAttendenceLeaveReport as
+select FirstName + ' '+ LastName as StudentName, RegistrationNumber, AttendanceDate, Title,Name
+from StudentAttendence as sa
+join ClassAttendence ca
+on sa.AttendenceId = ca.ClassAttendenceId
+join CourseAttendence as coa
+on coa.AttendenceId = ca.ClassAttendenceId
+join Student as s
+on s.StudentId = sa.StudentId
+join Course as c
+on c.CourseId = coa.CourseId
+join Lookup as lkup
+on lkup.LookupId = sa.AttendenceStatus
+where Name ='Leave'
+group by
+Title,AttendanceDate,FirstName, LastName,RegistrationNumber,Name
