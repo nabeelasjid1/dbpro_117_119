@@ -1369,7 +1369,8 @@ namespace SmartSchoolManagementSystem.Controllers
         #endregion
 
         #region Reporting Section
-        //Student Attendence Subject-wise Reports 
+        //Student Attendence Subject-wise Reports
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentAttendenceReports()
         {
             var data = db.StudentAttendenceReports.ToList();
@@ -1380,6 +1381,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return File(s, "application/pdf");
         }
         //Student Dues Reports 
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentDuesReport()
         {
             var data = db.StudentDuesReports.ToList();
@@ -1390,6 +1392,7 @@ namespace SmartSchoolManagementSystem.Controllers
             return File(s, "application/pdf");
         }
         //Student Result Reports 
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentResultReport()
         {
             var data = db.StudentResultReports.ToList();
@@ -1401,6 +1404,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         //Student Hostel Reports 
+        [Authorize(Roles = "Admin")]
         public ActionResult HostelDetailsReport()
         {
             var data = db.HostelDetailsReports.ToList();
@@ -1412,6 +1416,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         //Student Registered Subjects Reports 
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentRegisterStubjectsReport()
         {
             var data = db.StudentRegisterStubjectsReports.ToList();
@@ -1422,7 +1427,8 @@ namespace SmartSchoolManagementSystem.Controllers
             return File(s, "application/pdf");
         }
 
-        //Student Joined Events Reports 
+        //Student Joined Events Reports
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentJoinedEventsReport()
         {
             var data = db.StudentJoinedEventsReports.ToList();
@@ -1433,7 +1439,8 @@ namespace SmartSchoolManagementSystem.Controllers
             return File(s, "application/pdf");
         }
 
-        //Student Complaints Reports 
+        //Student Complaints Reports
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentComplaintsReport()
         {
             var data = db.StudentComplaintsReports.ToList();
@@ -1445,6 +1452,7 @@ namespace SmartSchoolManagementSystem.Controllers
         }
 
         //Student Leave Report
+        [Authorize(Roles = "Admin")]
         public ActionResult StudentAttendenceLeaveReport()
         {
             var data = db.StudentAttendenceLeaveReports.ToList();

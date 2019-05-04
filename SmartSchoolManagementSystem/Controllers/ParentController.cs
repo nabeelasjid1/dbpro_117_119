@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using SmartSchoolManagementSystem.CollectionViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -580,6 +581,17 @@ namespace SmartSchoolManagementSystem.Controllers
             }
             var model = challansList.Distinct();
             return View(model);
+        }
+
+        //Print Challan
+        public ActionResult ChallanPrint(int id)
+        {
+            var data = db.Chalans.Where(c => c.ChalanId == id).ToList();
+            rptChallan rpt = new rptChallan();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
         }
         #endregion
     }
