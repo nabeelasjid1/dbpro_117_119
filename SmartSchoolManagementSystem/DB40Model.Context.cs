@@ -58,5 +58,13 @@ namespace SmartSchoolManagementSystem
         public virtual DbSet<StudentRegSubjectRelation> StudentRegSubjectRelations { get; set; }
         public virtual DbSet<StudentResult> StudentResults { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<HostelDetailsReport> HostelDetailsReports { get; set; }
+        public virtual DbSet<StudentAttendenceLeaveReport> StudentAttendenceLeaveReports { get; set; }
+        public virtual DbSet<StudentAttendenceReport> StudentAttendenceReports { get; set; }
+        public virtual DbSet<StudentComplaintsReport> StudentComplaintsReports { get; set; }
+        public virtual DbSet<StudentDuesReport> StudentDuesReports { get; set; }
+        public virtual DbSet<StudentJoinedEventsReport> StudentJoinedEventsReports { get; set; }
+        public virtual DbSet<StudentRegisterStubjectsReport> StudentRegisterStubjectsReports { get; set; }
+        public virtual DbSet<StudentResultReport> StudentResultReports { get; set; }
     }
 }

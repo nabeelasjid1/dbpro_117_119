@@ -227,7 +227,7 @@ namespace SmartSchoolManagementSystem.Controllers
         public ActionResult MarkAttendance(int id,MarkAttendenceViewModel model)
         {
             var todayDate = DateTime.Now.Date;
-            if (db.ClassAttendences.Any(c=> c.AttendanceDate == todayDate))
+            if (db.ClassAttendences.Any(c=> c.AttendanceDate == todayDate && c.CourseAttendences.Any(d=> d.CourseId == id)))
             {
                 return RedirectToAction("CoursesList");
             }

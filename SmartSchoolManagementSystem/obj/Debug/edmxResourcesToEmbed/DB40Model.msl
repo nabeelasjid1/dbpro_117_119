@@ -354,5 +354,84 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="HostelDetailsReports">
+      <EntityTypeMapping TypeName="DB40Model.HostelDetailsReport">
+        <MappingFragment StoreEntitySet="HostelDetailsReport">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentAttendenceLeaveReports">
+      <EntityTypeMapping TypeName="DB40Model.StudentAttendenceLeaveReport">
+        <MappingFragment StoreEntitySet="StudentAttendenceLeaveReport">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentAttendenceReports">
+      <EntityTypeMapping TypeName="DB40Model.StudentAttendenceReport">
+        <MappingFragment StoreEntitySet="StudentAttendenceReport">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentComplaintsReports">
+      <EntityTypeMapping TypeName="DB40Model.StudentComplaintsReport">
+        <MappingFragment StoreEntitySet="StudentComplaintsReport">
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentDuesReports">
+      <EntityTypeMapping TypeName="DB40Model.StudentDuesReport">
+        <MappingFragment StoreEntitySet="StudentDuesReport">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentJoinedEventsReports">
+      <EntityTypeMapping TypeName="DB40Model.StudentJoinedEventsReport">
+        <MappingFragment StoreEntitySet="StudentJoinedEventsReport">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentRegisterStubjectsReports">
+      <EntityTypeMapping TypeName="DB40Model.StudentRegisterStubjectsReport">
+        <MappingFragment StoreEntitySet="StudentRegisterStubjectsReport">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentResultReports">
+      <EntityTypeMapping TypeName="DB40Model.StudentResultReport">
+        <MappingFragment StoreEntitySet="StudentResultReport">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

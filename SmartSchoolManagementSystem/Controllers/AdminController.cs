@@ -1368,5 +1368,17 @@ namespace SmartSchoolManagementSystem.Controllers
 
         #endregion
 
+        #region Reporting Section
+        public ActionResult StudentAttendenceReports()
+        {
+            var data = db.StudentAttendenceReports.ToList();
+            rptStudentAttendenceReport rpt = new rptStudentAttendenceReport();
+            rpt.Load();
+            rpt.SetDataSource(data);
+            Stream s = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(s, "application/pdf");
+        }
+        #endregion
+
     }
 }

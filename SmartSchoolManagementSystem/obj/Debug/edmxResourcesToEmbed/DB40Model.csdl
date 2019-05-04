@@ -1013,5 +1013,106 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="HostelDetailsReports" EntityType="DB40Model.HostelDetailsReport" />
+    <EntitySet Name="StudentAttendenceLeaveReports" EntityType="DB40Model.StudentAttendenceLeaveReport" />
+    <EntitySet Name="StudentAttendenceReports" EntityType="DB40Model.StudentAttendenceReport" />
+    <EntitySet Name="StudentComplaintsReports" EntityType="DB40Model.StudentComplaintsReport" />
+    <EntitySet Name="StudentDuesReports" EntityType="DB40Model.StudentDuesReport" />
+    <EntitySet Name="StudentJoinedEventsReports" EntityType="DB40Model.StudentJoinedEventsReport" />
+    <EntitySet Name="StudentRegisterStubjectsReports" EntityType="DB40Model.StudentRegisterStubjectsReport" />
+    <EntitySet Name="StudentResultReports" EntityType="DB40Model.StudentResultReport" />
   </EntityContainer>
+  <EntityType Name="HostelDetailsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentAttendenceLeaveReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="AttendanceDate" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentAttendenceReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="AttendanceDate" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentComplaintsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Detail" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentDuesReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Fee" />
+      <PropertyRef Name="IsPaid" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fee" Type="Int32" Nullable="false" />
+    <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+    <Property Name="Year" Type="Int32" />
+  </EntityType>
+  <EntityType Name="StudentJoinedEventsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentRegisterStubjectsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentResultReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

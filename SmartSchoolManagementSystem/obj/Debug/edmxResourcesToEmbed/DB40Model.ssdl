@@ -325,6 +325,115 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.HostelDetailsReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HostelDetailsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.StudentAttendenceLeaveReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentAttendenceLeaveReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="AttendanceDate" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AttendanceDate" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.StudentAttendenceReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentAttendenceReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="AttendanceDate" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AttendanceDate" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.StudentComplaintsReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentComplaintsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Detail" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.StudentDuesReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentDuesReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Fee" />
+      <PropertyRef Name="IsPaid" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fee" Type="int" Nullable="false" />
+    <Property Name="IsPaid" Type="bit" Nullable="false" />
+    <Property Name="Year" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.StudentJoinedEventsReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentJoinedEventsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.StudentRegisterStubjectsReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentRegisterStubjectsReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB40.dbo.StudentResultReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StudentResultReport">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <Association Name="FK_CourseAttendence_ClassAttendence">
     <End Role="ClassAttendence" Type="Self.ClassAttendence" Multiplicity="1" />
     <End Role="CourseAttendence" Type="Self.CourseAttendence" Multiplicity="*" />
@@ -824,6 +933,69 @@
     <EntitySet Name="StudentRegSubjectRelation" EntityType="Self.StudentRegSubjectRelation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentResult" EntityType="Self.StudentResult" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HostelDetailsReport" EntityType="Self.HostelDetailsReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HostelDetailsReport].[StudentName] AS [StudentName], 
+    [HostelDetailsReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [HostelDetailsReport].[Name] AS [Name]
+    FROM [dbo].[HostelDetailsReport] AS [HostelDetailsReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentAttendenceLeaveReport" EntityType="Self.StudentAttendenceLeaveReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentAttendenceLeaveReport].[StudentName] AS [StudentName], 
+    [StudentAttendenceLeaveReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [StudentAttendenceLeaveReport].[AttendanceDate] AS [AttendanceDate], 
+    [StudentAttendenceLeaveReport].[Title] AS [Title], 
+    [StudentAttendenceLeaveReport].[Name] AS [Name]
+    FROM [dbo].[StudentAttendenceLeaveReport] AS [StudentAttendenceLeaveReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentAttendenceReport" EntityType="Self.StudentAttendenceReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentAttendenceReport].[StudentName] AS [StudentName], 
+    [StudentAttendenceReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [StudentAttendenceReport].[AttendanceDate] AS [AttendanceDate], 
+    [StudentAttendenceReport].[Title] AS [Title], 
+    [StudentAttendenceReport].[Name] AS [Name]
+    FROM [dbo].[StudentAttendenceReport] AS [StudentAttendenceReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentComplaintsReport" EntityType="Self.StudentComplaintsReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentComplaintsReport].[StudentName] AS [StudentName], 
+    [StudentComplaintsReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [StudentComplaintsReport].[Detail] AS [Detail]
+    FROM [dbo].[StudentComplaintsReport] AS [StudentComplaintsReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentDuesReport" EntityType="Self.StudentDuesReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentDuesReport].[StudentName] AS [StudentName], 
+    [StudentDuesReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [StudentDuesReport].[Fee] AS [Fee], 
+    [StudentDuesReport].[IsPaid] AS [IsPaid], 
+    [StudentDuesReport].[Year] AS [Year]
+    FROM [dbo].[StudentDuesReport] AS [StudentDuesReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentJoinedEventsReport" EntityType="Self.StudentJoinedEventsReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentJoinedEventsReport].[StudentName] AS [StudentName], 
+    [StudentJoinedEventsReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [StudentJoinedEventsReport].[Name] AS [Name]
+    FROM [dbo].[StudentJoinedEventsReport] AS [StudentJoinedEventsReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentRegisterStubjectsReport" EntityType="Self.StudentRegisterStubjectsReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentRegisterStubjectsReport].[StudentName] AS [StudentName], 
+    [StudentRegisterStubjectsReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [StudentRegisterStubjectsReport].[Title] AS [Title]
+    FROM [dbo].[StudentRegisterStubjectsReport] AS [StudentRegisterStubjectsReport]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StudentResultReport" EntityType="Self.StudentResultReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StudentResultReport].[StudentName] AS [StudentName], 
+    [StudentResultReport].[RegistrationNumber] AS [RegistrationNumber], 
+    [StudentResultReport].[Title] AS [Title], 
+    [StudentResultReport].[Name] AS [Name]
+    FROM [dbo].[StudentResultReport] AS [StudentResultReport]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_CourseAttendence_ClassAttendence" Association="Self.FK_CourseAttendence_ClassAttendence">
       <End Role="ClassAttendence" EntitySet="ClassAttendence" />
       <End Role="CourseAttendence" EntitySet="CourseAttendence" />

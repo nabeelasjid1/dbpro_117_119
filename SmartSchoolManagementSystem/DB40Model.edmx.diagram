@@ -75,6 +75,14 @@
         <AssociationConnector Association="DB40Model.FK_StudentRegSubjectRelation_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.FK_StudentResult_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DB40Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB40Model.HostelDetailsReport" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB40Model.StudentAttendenceLeaveReport" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DB40Model.StudentAttendenceReport" Width="1.5" PointX="13.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DB40Model.StudentComplaintsReport" Width="1.5" PointX="13.375" PointY="9.75" />
+        <EntityTypeShape EntityType="DB40Model.StudentDuesReport" Width="1.5" PointX="13.375" PointY="12.75" />
+        <EntityTypeShape EntityType="DB40Model.StudentJoinedEventsReport" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB40Model.StudentRegisterStubjectsReport" Width="1.5" PointX="15.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DB40Model.StudentResultReport" Width="1.5" PointX="15.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
